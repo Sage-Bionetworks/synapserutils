@@ -3,15 +3,6 @@
 ## for the active R version
 
 set -e
-##
-## install the dependencies, first making sure there are none in the default path
-##
-if [ ${USE_STAGING_RAN} ]
-then
-	RAN=https://sage-bionetworks.github.io/staging-ran
-else
-	RAN=https://sage-bionetworks.github.io/ran
-fi
 
 ## create the temporary library directory
 # make sure nothing was left from the previous build
@@ -22,7 +13,7 @@ mkdir -p ../RLIB
 R -e "try(remove.packages('synapserutils'), silent=T);\
 try(remove.packages('synapser'), silent=T);\
 try(remove.packages('PythonEmbedInR'), silent=T);\
-install.packages(c('pack', 'R6', 'testthat', 'knitr', 'rmarkdown', 'PythonEmbedInR', 'rjson', 'synapser'),\
+install.packages(c('pack', 'R6', 'testthat', 'knitr', 'rmarkdown', 'synapser'),\
  repos=c('http://cran.fhcrc.org', '${RAN}'))"
 
 PACKAGE_NAME=synapserutils
@@ -179,10 +170,6 @@ else
   echo "*** UNRECOGNIZED LABEL: $label ***"
   exit 1
 fi
-
-R -e ".libPaths('../RLIB');\
-      setwd(sprintf('%s/tests', getwd()));\
-      source('testthat.R')"
 
 ## clean up the temporary R library dir
 rm -rf ../RLIB
