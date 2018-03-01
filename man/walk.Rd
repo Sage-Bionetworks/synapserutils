@@ -42,6 +42,7 @@ walk(synId)
 \examples{
   \dontrun{
       walkedPath <- walk("syn1234")
+      as.list(walkedPath)
   }
 }
 
