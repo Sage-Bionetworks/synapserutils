@@ -60,7 +60,7 @@ copy(entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE, v
 % for testing that should not be shown to users, but will be run by example().
 \examples{
   \dontrun{
-      copy("syn123", "syn456")
+      copy("syn1234", "syn33455")
   }
 }
 

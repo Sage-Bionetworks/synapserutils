@@ -29,7 +29,7 @@ copyWiki(entity, destinationId, entitySubPageId=NA, destinationSubPageId=NA, upd
 \item{updateSynIds}{            Update all the synapse ID's referenced in the wikis. (e.g. syn1234 becomes syn2345)\cr
                                 Defaults to True but needs an entityMap}
 \item{entityMap}{               An entity map {'oldSynId','newSynId'} to update the synapse IDs referenced in the wiki\cr
-                                Defaults to None }
+                                Defaults to NA }
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
