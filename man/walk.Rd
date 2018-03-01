@@ -14,10 +14,9 @@ Traverse through the hierarchy of files and folders stored under the synId. Has 
 as os.walk()
 }
 \usage{
-walk(syn, synId)
+walk(synId)
 }
 \arguments{
-\item{syn}{            A synapse object: syn = synapseclient.login()- Must be logged into synapse}
 \item{synId}{          A synapse ID of a folder or project}
 }
 \details{

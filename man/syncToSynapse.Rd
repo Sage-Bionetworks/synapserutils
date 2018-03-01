@@ -13,10 +13,9 @@ syncToSynapse
 Synchronizes files specified in the manifest file to Synapse
 }
 \usage{
-syncToSynapse(syn, manifestFile, dryRun=FALSE, sendMessages=TRUE, retries=4)
+syncToSynapse(manifestFile, dryRun=FALSE, sendMessages=TRUE, retries=4)
 }
 \arguments{
-\item{syn}{    A synapse object as obtained with syn = synapseclient.login()}
 \item{manifestFile}{ A tsv file with file locations and metadata\cr
                       to be pushed to Synapse.  See below for details}
 \item{dryRun}{ Performs validation without uploading if set to True (default is False)}
@@ -33,16 +32,16 @@ syncToSynapse(syn, manifestFile, dryRun=FALSE, sendMessages=TRUE, retries=4)
 % A section with references to the literature. Use \url{} or \href{}{} for web pointers.
 }
 \note{
-% Use this for a special note you want to have pointed out. 
+% Use this for a special note you want to have pointed out.
 }
 \seealso{
 % Pointers to related R objects, using \code{\link{...}} to refer to them.
 }
-% Examples of how to use the function. 
-% Examples are not only useful for documentation purposes, but also provide test code used for diagnostic checking of R code. 
-% By default, text will be displayed in the output of the help page and run by example() and by R CMD check. 
-% You can use \dontrun{} for text that should only be shown, but not run, and \dontshow{} for extra commands 
-% for testing that should not be shown to users, but will be run by example(). 
+% Examples of how to use the function.
+% Examples are not only useful for documentation purposes, but also provide test code used for diagnostic checking of R code.
+% By default, text will be displayed in the output of the help page and run by example() and by R CMD check.
+% You can use \dontrun{} for text that should only be shown, but not run, and \dontshow{} for extra commands
+% for testing that should not be shown to users, but will be run by example().
 \examples{
 
 }
