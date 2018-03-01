@@ -8,9 +8,9 @@
   force(functionContainerName)
   assign(sprintf(".%s", synName), function(...) {
     functionContainer <- pyGet(functionContainerName, simplify = FALSE)
-    argsAndKwArgs <- .determineArgsAndKwArgs(...)
+    argsAndKwArgs <- determineArgsAndKwArgs(...)
     functionAndArgs <- append(list(functionContainer, pyName), argsAndKwArgs$args)
-    .cleanUpStackTrace(pyCall, list("gateway.invoke", args = functionAndArgs, kwargs = argsAndKwArgs$kwargs, simplify = F))
+    cleanUpStackTrace(pyCall, list("gateway.invoke", args = functionAndArgs, kwargs = argsAndKwArgs$kwargs, simplify = F))
   })
   setGeneric(
     name = synName,
