@@ -13,7 +13,7 @@ copyWiki
 Copies wikis and updates internal links
 }
 \usage{
-copyWiki(syn, entity, destinationId, entitySubPageId=NA, destinationSubPageId=NA, updateLinks=TRUE, updateSynIds=TRUE, entityMap=NA)
+copyWiki(syn, entity, destinationId, entitySubPageId=NULL, destinationSubPageId=NULL, updateLinks=TRUE, updateSynIds=TRUE, entityMap=NULL)
 }
 \arguments{
 \item{syn}{                     A synapse object: syn = synapseclient.login()- Must be logged into synapse}

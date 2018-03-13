@@ -13,7 +13,7 @@ changeFileMetaData
 
 }
 \usage{
-changeFileMetaData(syn, entity, downloadAs=NA, contentType=NA)
+changeFileMetaData(syn, entity, downloadAs=NULL, contentType=NULL)
 }
 \arguments{
 \item{syn}{}
