@@ -19,5 +19,5 @@
   generateRWrappers(pyPkg = "synapseUtilsWrapper",
                     module = "synapseUtilsWrapper.SynapseUtilsWrapper",
                     setGenericCallback = .callback,
-                    pyObjectName = "synUtils")
+                    pySingletonName = "synUtils")
 }
