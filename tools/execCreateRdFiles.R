@@ -15,4 +15,4 @@ toOmit <- c("with_progress_bar", "notifyMe")
 generateRdFiles(srcRootDir,
                 pyPkg = "synapseutils",
                 module = "synapseutils",
-                modifyFunctions = .selectSynapseUtilsFunctionInfo)
+                functionFilter = .selectSynapseUtilsFunctionInfo)
