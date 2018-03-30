@@ -17,7 +17,7 @@
 
 .defineUtilFunctions <- function() {
   generateRWrappers(pyPkg = "synapseUtilsWrapper",
-                    class = "synapseUtilsWrapper.SynapseUtilsWrapper",
+                    container = "synapseUtilsWrapper.SynapseUtilsWrapper",
                     setGenericCallback = .callback,
                     pySingletonName = "synUtils")
 }

@@ -14,5 +14,5 @@ toOmit <- c("with_progress_bar", "notifyMe")
 # generate the Python documentation
 generateRdFiles(srcRootDir,
                 pyPkg = "synapseutils",
-                module = "synapseutils",
+                container = "synapseutils",
                 functionFilter = .selectSynapseUtilsFunctionInfo)
