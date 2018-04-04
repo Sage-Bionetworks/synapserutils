@@ -25,7 +25,7 @@ class SynapseUtilsWrapper(object):
   def syncFromSynapse(self, entity, path = None, ifcollision = 'overwrite.local', allFiles = None, followLink = False):
     return synapseutils.syncFromSynapse(self.syn, entity, path, ifcollision, allFiles, followLink)
 
-  def syncToSynapse(self, manifestFile, dryRun, sendMessages, retries = MAX_RETRIES):
+  def syncToSynapse(self, manifestFile, dryRun = False, sendMessages = True, retries = MAX_RETRIES):
     return synapseutils.syncToSynapse(self.syn, manifestFile, dryRun, sendMessages, retries = MAX_RETRIES)
 
   def walk(self, synId):
