@@ -52,9 +52,7 @@ copyWiki(entity, destinationId, entitySubPageId=NA, destinationSubPageId=NA, upd
 % You can use \dontrun{} for text that should only be shown, but not run, and \dontshow{} for extra commands
 % for testing that should not be shown to users, but will be run by example().
 \examples{
-  \dontrun{
-      copyWiki("syn123", "syn456")
-  }
+  copyWiki("syn123", "syn456")
 }
 
 
