@@ -10,11 +10,13 @@ rm -rf ../RLIB
 mkdir -p ../RLIB
 
 ## install the dependencies
-R -e "try(remove.packages('synapserutils'), silent=T);\
-try(remove.packages('synapser'), silent=T);\
-try(remove.packages('PythonEmbedInR'), silent=T);\
-install.packages(c('pack', 'R6', 'testthat', 'knitr', 'rmarkdown', 'synapser'),\
- repos=c('http://cran.fhcrc.org', '${RAN}'))"
+echo "try(remove.packages('synapserutils'), silent=T)" > installPackages.R
+echo "try(remove.packages('synapser'), silent=T)" >> installPackages.R
+echo "try(remove.packages('PythonEmbedInR'), silent=T)" >> installPackages.R
+echo "install.packages(c('pack', 'R6', 'testthat', 'knitr', 'rmarkdown', 'synapser')," >> installPackages.R
+echo "repos=c('http://cran.fhcrc.org', '${RAN}'))" >> installPackages.R
+R --vanilla < installPackages.R
+rm installPackages.R
 
 PACKAGE_NAME=synapserutils
 
