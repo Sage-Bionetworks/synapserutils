@@ -1,8 +1,3 @@
-%
-%  Auto-generated file, do not modify.
-%  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
-%  Use Git to identify changes in this file which suggest where to change your edited copy.
-%
 \name{walk}
 \alias{walk}
 \docType{methods}
@@ -10,8 +5,7 @@
 walk
 }
 \description{
-Traverse through the hierarchy of files and folders stored under the synId. Has the same behavior
-as os.walk()
+Traverse the hierarchy of files and folders stored under the synId.
 }
 \usage{
 walk(synId)
@@ -40,8 +34,10 @@ walk(synId)
 % You can use \dontrun{} for text that should only be shown, but not run, and \dontshow{} for extra commands
 % for testing that should not be shown to users, but will be run by example().
 \examples{
-  walkedPath <- walk("syn1234")
-  as.list(walkedPath)
+  \dontrun{
+    walkedPath <- walk("syn1234")
+    as.list(walkedPath)
+  }
 }
 
 
