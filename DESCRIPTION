@@ -1,0 +1,15 @@
+Package: synapserutils
+Type: Package
+Title: Collection of utilities building on top of synapser
+Version: 0.1.0
+Date: 2018-02-21
+Authors@R: person("Kimyen", "Ladia", role = c("aut", "cre"), email = "kimyen.ladia@sageabse.org")
+Maintainer: Kimyen Ladia <kimyen.ladia@sageabse.org>
+Description: Provides convenience R functions for interacting with Synapse.
+License: Apache License 2.0
+Encoding: UTF-8
+Depends: synapser (>= 0.2)
+Suggests: testthat, knitr, rmarkdown
+URL: https://www.sagebase.org
+BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues
+VignetteBuilder: knitr
