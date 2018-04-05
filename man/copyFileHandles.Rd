@@ -1,8 +1,3 @@
-%
-%  Auto-generated file, do not modify.
-%  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
-%  Use Git to identify changes in this file which suggest where to change your edited copy.
-%
 \name{copyFileHandles}
 \alias{copyFileHandles}
 \docType{methods}
@@ -43,7 +38,9 @@ copyFileHandles(fileHandles, associateObjectTypes, associateObjectIds, contentTy
 % You can use \dontrun{} for text that should only be shown, but not run, and \dontshow{} for extra commands
 % for testing that should not be shown to users, but will be run by example().
 \examples{
-  copyFileHandles(list('19507670'), list('FileEntity'), list('syn11935399'), list('text'), list('newFile'))
+  \dontrun{
+    copyFileHandles(list('19507670'), list('FileEntity'), list('syn11935399'), list('text'), list('newFile'))
+  }
 }
 
 
