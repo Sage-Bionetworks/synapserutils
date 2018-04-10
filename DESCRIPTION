@@ -1,8 +1,8 @@
 Package: synapserutils
 Type: Package
 Title: Collection of utilities building on top of synapser
-Version: 0.1.0
-Date: 2018-02-21
+Version: 0.1.2
+Date: 2018-04-10
 Authors@R: person("Kimyen", "Ladia", role = c("aut", "cre"), email = "kimyen.ladia@sageabse.org")
 Maintainer: Kimyen Ladia <kimyen.ladia@sageabse.org>
 Description: Provides convenience R functions for interacting with Synapse.
