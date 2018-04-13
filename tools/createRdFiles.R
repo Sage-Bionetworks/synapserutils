@@ -2,6 +2,7 @@
 args <- commandArgs(TRUE)
 srcRootDir <- args[1]
 library("synapser")
+library("rjson")
 
 toOmit <- c("with_progress_bar", "notifyMe")
 .selectSynapseUtilsFunctionInfo <- function(x) {
@@ -12,7 +13,7 @@ toOmit <- c("with_progress_bar", "notifyMe")
 }
 
 # generate the Python documentation
-generateRdFiles(srcRootDir,
+PythonEmbedInR::generateRdFiles(srcRootDir,
                 pyPkg = "synapseutils",
                 container = "synapseutils",
                 functionFilter = .selectSynapseUtilsFunctionInfo)
