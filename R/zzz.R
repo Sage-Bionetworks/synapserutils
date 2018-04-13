@@ -1,8 +1,8 @@
 .onLoad <- function(libname, pkgname) {
   .addPythonWrapperToSearchPath(system.file(package = "synapserutils"))
   .defineUtilFunctions()
-  pyImport("synapseUtilsWrapper")
-  pyExec("synUtils = synapseUtilsWrapper.SynapseUtilsWrapper(syn)")
+  PythonEmbedInR::pyImport("synapseUtilsWrapper")
+  PythonEmbedInR::pyExec("synUtils = synapseUtilsWrapper.SynapseUtilsWrapper(syn)")
 }
 
 .callback <- function(name, def) {
@@ -10,13 +10,13 @@
 }
 
 .addPythonWrapperToSearchPath <- function(srcDir) {
-  pyImport("sys")
-  pyExec(sprintf("sys.path.append('%s')", file.path(srcDir, "python")))
-  pyImport("synapseUtilsWrapper")
+  PythonEmbedInR::pyImport("sys")
+  PythonEmbedInR::pyExec(sprintf("sys.path.append('%s')", file.path(srcDir, "python")))
+  PythonEmbedInR::pyImport("synapseUtilsWrapper")
 }
 
 .defineUtilFunctions <- function() {
-  generateRWrappers(pyPkg = "synapseUtilsWrapper",
+  PythonEmbedInR::generateRWrappers(pyPkg = "synapseUtilsWrapper",
                     container = "synapseUtilsWrapper.SynapseUtilsWrapper",
                     setGenericCallback = .callback,
                     pySingletonName = "synUtils")
