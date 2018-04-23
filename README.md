@@ -55,7 +55,7 @@ synLogin()
 The example below copy File ID `syn123` to Project ID `syn456`:
 
 ```r
-  copy("syn123", "syn456")
+copy("syn123", "syn456")
 ```
 
 The first parameter in `copy()` can be a File ID, a Table ID, or a Link ID. The second parameter must be a Folder ID or a Project ID.
@@ -71,7 +71,7 @@ For more information on `copy()`, please see:
 To copy a wiki page that associate with an Entity (Project/ File/ Folder/ Table) `syn123` to another Entity `syn789`:
 
 ```r
-  copyWiki("syn123", "syn789")
+copyWiki("syn123", "syn789")
 ```
 
 For more information on `copyWiki()`, please see:
@@ -87,7 +87,7 @@ For more information on `copyWiki()`, please see:
 `syncToSynapse()` takes a manifest file and uploads the files listed in the manifest file to Synapse:
 
 ```r
-  syncToSynapse("/path/to/manifest.tsv")
+syncToSynapse("/path/to/manifest.tsv")
 ```
 
 The manifest file format and instructions on how to create one could be found [here](http://docs.synapse.org/articles/uploading_in_bulk.html#creating-a-manifest) and by:
@@ -101,7 +101,7 @@ The manifest file format and instructions on how to create one could be found [h
 To recursively download all files within a container (Folder/ Project) `syn123`:
 
 ```r
-  syncFromSynapse("syn123")
+syncFromSynapse("syn123")
 ```
 
 More information on downloading data in bulk is available [here](http://docs.synapse.org/articles/uploading_in_bulk.html#downloading-data-in-bulk) and by:
@@ -115,7 +115,7 @@ More information on downloading data in bulk is available [here](http://docs.syn
 To recursively getting Entity (File/ Folder/ Table/ Link/ Project) metadata from a container (Folder/ Project):
 
 ```r
-  walk("syn123")
+walk("syn123")
 ```
 
 For more information about `walk()`, please see:
