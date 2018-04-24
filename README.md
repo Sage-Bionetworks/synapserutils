@@ -8,7 +8,7 @@ output: github_document
 
 # synapserutils
 
-The `synapserutils` package provides a set of utility functions, built on top of [`synapser`](http://sage-bionetworks.github.io/synapser/) package.
+The `synapserutils` package provides a set of utility functions, built on top of the [`synapser`](http://sage-bionetworks.github.io/synapser/) package.
 
 ## Installation
 
@@ -52,7 +52,7 @@ synLogin()
 
 #### Copy Entity (File, Folder, Table, Link, and Project)
 
-The example below copy File ID `syn123` to Project ID `syn456`:
+The example below copies File ID `syn123` to Project ID `syn456`:
 
 ```r
 copy("syn123", "syn456")
@@ -68,7 +68,7 @@ For more information on `copy()`, please see:
 
 #### Copy Wiki and Wiki Subpage
 
-To copy a wiki page that associate with an Entity (Project/ File/ Folder/ Table) `syn123` to another Entity `syn789`:
+To copy a wiki page that is associated with an Entity (Project/ File/ Folder/ Table) `syn123` to another Entity `syn789`:
 
 ```r
 copyWiki("syn123", "syn789")
@@ -90,7 +90,7 @@ For more information on `copyWiki()`, please see:
 syncToSynapse("/path/to/manifest.tsv")
 ```
 
-The manifest file format and instructions on how to create one could be found [here](http://docs.synapse.org/articles/uploading_in_bulk.html#creating-a-manifest) and by:
+The manifest file format and instructions on how to create one can be found [here](http://docs.synapse.org/articles/uploading_in_bulk.html#creating-a-manifest) and by:
 
 ```r
 ?syncToSynapse
