@@ -4,7 +4,13 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please modify README.Rmd and run `pkgdown::build_site()` to update README.md -->
 
-
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
 
 # synapserutils
 
@@ -14,25 +20,21 @@ The `synapserutils` package provides a set of utility functions, built on top of
 
 `synapserutils` is available as a ready-built package for Microsoft Windows and Mac OSX. For Linux systems, it is available to install from source. It can be installed or upgraded using the standard `install.packages()` command, adding the [Sage Bionetworks R Archive Network (RAN)](https://sage-bionetworks.github.io/ran) to the repository list, e.g.:
 
-
-```r
+```{r eval=F}
 install.packages("synapserutils", repos=c("https://sage-bionetworks.github.io/ran", "http://cran.fhcrc.org"))
 ```
 Alternatively, edit your `~/.Rprofile` and configure your default repositories:
-
-```r
+```{r eval=F}
 options(repos=c("https://sage-bionetworks.github.io/ran", "http://cran.fhcrc.org"))
 ```
 after which you may run `install.packages` without specifying the repositories:
-
-```r
+```{r eval=F}
 install.packages("synapserutils")
 ```
 
 If you have been asked to validate a release candidate, please replace the URL https://sage-bionetworks.github.io/ran with https://sage-bionetworks.github.io/staging-ran, that is:
 
-
-```r
+```{r eval=F}
 install.packages("synapserutils", repos=c("https://sage-bionetworks.github.io/staging-ran", "http://cran.fhcrc.org"))
 ```
 
@@ -40,8 +42,7 @@ install.packages("synapserutils", repos=c("https://sage-bionetworks.github.io/st
 
 To get started, try logging into Synapse. If you don't already have a Synapse account, register [here](https://www.synapse.org/register):
 
-
-```r
+```{r eval=F}
 library(synapserutils)
 synLogin()
 ```
@@ -53,30 +54,26 @@ synLogin()
 #### Copy Entity (File, Folder, Table, Link, and Project)
 
 The example below copies File ID `syn123` to Project ID `syn456`:
-
-```r
+```{r eval=F}
 copy("syn123", "syn456")
 ```
 
 The first parameter in `copy()` can be a File ID, a Table ID, or a Link ID. The second parameter must be a Folder ID or a Project ID.
 
 For more information on `copy()`, please see:
-
-```r
+```{r eval=F}
 ?copy
 ```
 
 #### Copy Wiki and Wiki Subpage
 
 To copy a wiki page that is associated with an Entity (Project/ File/ Folder/ Table) `syn123` to another Entity `syn789`:
-
-```r
+```{r eval=F}
 copyWiki("syn123", "syn789")
 ```
 
 For more information on `copyWiki()`, please see:
-
-```r
+```{r eval=F}
 ?copyWiki
 ```
 
@@ -85,41 +82,35 @@ For more information on `copyWiki()`, please see:
 #### Upload Data in Bulk
 
 `syncToSynapse()` takes a manifest file and uploads the files listed in the manifest file to Synapse:
-
-```r
+```{r eval=F}
 syncToSynapse("/path/to/manifest.tsv")
 ```
 
 The manifest file format and instructions on how to create one can be found [here](http://docs.synapse.org/articles/uploading_in_bulk.html#creating-a-manifest) and by:
-
-```r
+```{r eval=F}
 ?syncToSynapse
 ```
 
 #### Download Data in Bulk
 
 To recursively download all files within a container (Folder/ Project) `syn123`:
-
-```r
+```{r eval=F}
 syncFromSynapse("syn123")
 ```
 
 More information on downloading data in bulk is available [here](http://docs.synapse.org/articles/uploading_in_bulk.html#downloading-data-in-bulk) and by:
-
-```r
+```{r eval=F}
 ?syncFromSynapse
 ```
 
 ### Other Utilites
 
 To recursively getting Entity (File/ Folder/ Table/ Link/ Project) metadata from a container (Folder/ Project):
-
-```r
+```{r eval=F}
 walk("syn123")
 ```
 
 For more information about `walk()`, please see:
-
-```r
+```{r eval=F}
 ?walk
 ```
