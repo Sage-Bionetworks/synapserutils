@@ -14,8 +14,8 @@ Encoding: UTF-8
 Imports: PythonEmbedInR (>= 0.2)
 Depends: synapser (>= 0.2)
 Suggests: testthat, knitr, rmarkdown
-URL: https://www.sagebase.org
+URL: https://www.synapse.org
 BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues
 VignetteBuilder: knitr
 Additional_repositories:
-  https://sage-bionetworks.github.io/ran
+  http://ran.synapse.org
