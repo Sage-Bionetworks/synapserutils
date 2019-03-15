@@ -18,7 +18,7 @@ The `synapserutils` package provides a set of utility functions, built on top of
 
 ## Installation
 
-`synapserutils` is available as a ready-built package for Microsoft Windows and Mac OSX. For Linux systems, it is available to install from source. It can be installed or upgraded using the standard `install.packages()` command, adding the [Sage Bionetworks R Archive Network (RAN)](https://sage-bionetworks.github.io/ran) to the repository list, e.g.:
+`synapserutils` is available as a ready-built package for Microsoft Windows and Mac OSX. For Linux systems, it is available to install from source. It can be installed or upgraded using the standard `install.packages()` command, adding the [Sage Bionetworks R Archive Network (RAN)](http://ran.synapse.org) to the repository list, e.g.:
 
 ```{r eval=F}
 install.packages("synapserutils", repos=c("http://ran.synapse.org", "http://cran.fhcrc.org"))
