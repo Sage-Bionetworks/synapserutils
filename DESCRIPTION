@@ -1,7 +1,7 @@
 Package: synapserutils
 Type: Package
 Title: Collection of utilities building on top of synapser
-Version: 0.1.6
+Version: 0.0.0
 Date: 2019-05-31
 Authors@R: c(
   person("Kimyen", "Ladia", role = c("aut", "cre"), email = "kimyen.ladia@sagebase.org"),
