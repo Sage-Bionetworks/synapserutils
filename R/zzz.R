@@ -1,8 +1,15 @@
 .onLoad <- function(libname, pkgname) {
+  # reticulate::py_run_string("import synapseclient")
+  # reticulate::py_run_string(sprintf("synapserVersion = 'synapser/%s' ", utils::packageVersion("synapser")))
+  # reticulate::py_run_string("synapseclient.USER_AGENT['User-Agent'] = synapserVersion + synapseclient.USER_AGENT['User-Agent']")
+  # reticulate::py_run_string("synapseclient.core.config.single_threaded = True")
+  # reticulate::py_run_string("syn=synapseclient.Synapse(skip_checks=True)")
+  # # make syn available in the global environment
+  # syn <<- reticulate::py_eval("syn")
   .addPythonWrapperToSearchPath(system.file(package = "synapserutils"))
   .defineUtilFunctions()
-  PythonEmbedInR::pyImport("synapseUtilsWrapper")
-  PythonEmbedInR::pyExec("synUtils = synapseUtilsWrapper.SynapseUtilsWrapper(syn)")
+  reticulate::import("synapseUtilsWrapper")
+  reticulate::py_run_string("synUtils = synapseUtilsWrapper.SynapseUtilsWrapper(syn)")
 }
 
 .callback <- function(name, def) {
@@ -10,13 +17,13 @@
 }
 
 .addPythonWrapperToSearchPath <- function(srcDir) {
-  PythonEmbedInR::pyImport("sys")
-  PythonEmbedInR::pyExec(sprintf("sys.path.append('%s')", file.path(srcDir, "python")))
-  PythonEmbedInR::pyImport("synapseUtilsWrapper")
+  reticulate::py_run_string("sys")
+  reticulate::py_run_string(sprintf("sys.path.append('%s')", file.path(srcDir, "python")))
+  reticulate::py_run_string("synapseUtilsWrapper")
 }
 
 .defineUtilFunctions <- function() {
-  PythonEmbedInR::generateRWrappers(pyPkg = "synapseUtilsWrapper",
+  generateRWrappers(pyPkg = "synapseUtilsWrapper",
                     container = "synapseUtilsWrapper.SynapseUtilsWrapper",
                     setGenericCallback = .callback,
                     pySingletonName = "synUtils")
