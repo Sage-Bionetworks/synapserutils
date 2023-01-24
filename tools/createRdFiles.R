@@ -13,7 +13,7 @@ toOmit <- c("with_progress_bar", "notifyMe")
 }
 
 # generate the Python documentation
-PythonEmbedInR::generateRdFiles(srcRootDir,
+generateRdFiles(srcRootDir,
                 pyPkg = "synapseutils",
                 container = "synapseutils",
                 functionFilter = .selectSynapseUtilsFunctionInfo)
