@@ -11,8 +11,8 @@ Maintainer: Kimyen Ladia <kimyen.ladia@sagebase.org>
 Description: Provides convenience R functions for interacting with Synapse.
 License: Apache License 2.0
 Encoding: UTF-8
-Imports: PythonEmbedInR (>= 0.2)
-Depends: synapser (>= 0.2)
+Imports: reticulate (>= 0.2)
+# Depends: synapser (>= 0.2)
 Suggests: testthat, knitr, rmarkdown
 URL: https://www.synapse.org
 BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues
