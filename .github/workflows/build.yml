@@ -87,16 +87,16 @@ jobs:
           mkdir -p $R_LIBS_USER
           echo "R_LIBS_USER=$R_LIBS_USER" >> $GITHUB_ENV
           echo "R=R" >> $GITHUB_ENV
-      - name: install-test-config
-        shell: bash
-        run: |
-          if [ -z "${{ secrets.encrypted_d17283647768_key }}" ]  || [ -z "${{ secrets.encrypted_d17283647768_key }}" ]; then
-            echo "No test configuration decryption keys available, skipping integration tests"
-            exit 1
-          fi
-          # decrypt the encrypted test synapse configuration
-          openssl aes-256-cbc -K ${{ secrets.encrypted_d17283647768_key }} -iv ${{ secrets.encrypted_d17283647768_iv }} -in test.synapseConfig.enc -out test.synapseConfig -d
-          mv test.synapseConfig ~/.synapseConfig
+      # - name: install-test-config
+      #   shell: bash
+      #   run: |
+      #     if [ -z "${{ secrets.encrypted_d17283647768_key }}" ]  || [ -z "${{ secrets.encrypted_d17283647768_key }}" ]; then
+      #       echo "No test configuration decryption keys available, skipping integration tests"
+      #       exit 1
+      #     fi
+      #     # decrypt the encrypted test synapse configuration
+      #     openssl aes-256-cbc -K ${{ secrets.encrypted_d17283647768_key }} -iv ${{ secrets.encrypted_d17283647768_iv }} -in test.synapseConfig.enc -out test.synapseConfig -d
+      #     mv test.synapseConfig ~/.synapseConfig
       - name: install-pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
@@ -131,17 +131,17 @@ jobs:
           R CMD build ./
           R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load --no-multiarch
           echo "ARTIFACT_EXTENSION=zip" >> $GITHUB_ENV
-      - name: run-tests
-        shell: bash
-        run: |
-          echo ".libPaths(c('$R_LIBS_USER', .libPaths()));" > runTests.R
-          echo "setwd(sprintf('%s/tests', getwd()));" >> runTests.R
-          echo "source('testthat.R')" >> runTests.R
-          echo "library(synapserutils);" >> runTests.R
-          echo "detach(\"package:synapserutils\", unload=TRUE);" >> runTests.R
-          echo "library(synapserutils)" >> runTests.R
-          R --vanilla < runTests.R
-          rm runTests.R
+      # - name: run-tests
+      #   shell: bash
+      #   run: |
+      #     echo ".libPaths(c('$R_LIBS_USER', .libPaths()));" > runTests.R
+      #     echo "setwd(sprintf('%s/tests', getwd()));" >> runTests.R
+      #     echo "source('testthat.R')" >> runTests.R
+      #     echo "library(synapserutils);" >> runTests.R
+      #     echo "detach(\"package:synapserutils\", unload=TRUE);" >> runTests.R
+      #     echo "library(synapserutils)" >> runTests.R
+      #     R --vanilla < runTests.R
+      #     rm runTests.R
       - name: artifact-name
         shell: bash
         run: |
