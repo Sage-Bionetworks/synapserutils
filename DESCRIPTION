@@ -12,11 +12,11 @@ Description: Provides convenience R functions for interacting with Synapse.
 License: Apache License 2.0
 Encoding: UTF-8
 Imports:
-  reticulate(>= 1.25)
+  reticulate(>= 1.25),
   synapser
 Depends:
-  R(>= 4.0)
-  synapser (>= 1.0.0)
+  R(>= 4.0),
+  synapser(>= 1.0.0)
 Remotes:
   reticulate@1.28
 Suggests: testthat, knitr, rmarkdown
