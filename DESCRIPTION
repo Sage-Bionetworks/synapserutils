@@ -4,10 +4,10 @@ Title: Collection of utilities building on top of synapser
 Version: 1.0.0
 Date: 2019-05-31
 Authors@R: c(
-  person("Kimyen", "Ladia", role = c("aut", "cre"), email = "kimyen.ladia@sagebase.org"),
+  person("Thomas", "Yu", role = c("aut", "cre"), email = "thomas.yu@sagebase.org"),
   person("Sage Bionetworks", role = c("cph"))
   )
-Maintainer: Kimyen Ladia <kimyen.ladia@sagebase.org>
+Maintainer: Thomas Yu <thomas.yu@sagebase.org>
 Description: Provides convenience R functions for interacting with Synapse.
 License: Apache License 2.0
 Encoding: UTF-8
