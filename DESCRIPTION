@@ -1,18 +1,25 @@
 Package: synapserutils
 Type: Package
 Title: Collection of utilities building on top of synapser
-Version: 0.1.6
+Version: 1.0.0
 Date: 2019-05-31
 Authors@R: c(
-  person("Kimyen", "Ladia", role = c("aut", "cre"), email = "kimyen.ladia@sagebase.org"),
+  person("Thomas", "Yu", role = c("aut", "cre"), email = "thomas.yu@sagebase.org"),
   person("Sage Bionetworks", role = c("cph"))
   )
-Maintainer: Kimyen Ladia <kimyen.ladia@sagebase.org>
+Maintainer: Thomas Yu <thomas.yu@sagebase.org>
 Description: Provides convenience R functions for interacting with Synapse.
 License: Apache License 2.0
 Encoding: UTF-8
-Imports: reticulate (>= 0.2)
-# Depends: synapser (>= 0.2)
+Imports:
+  reticulate(>= 1.25),
+  synapser
+Depends:
+  R(>= 4.0),
+  synapser(>= 1.0.0)
+Remotes:
+  reticulate@1.28,
+  Sage-Bionetworks/synapser@update-client-version
 Suggests: testthat, knitr, rmarkdown
 URL: https://www.synapse.org
 BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues
