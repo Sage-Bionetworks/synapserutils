@@ -164,6 +164,9 @@ jobs:
   deploy:
     runs-on: ubuntu-22.04
     needs: build
+    permissions:
+      id-token: write
+      contents: read
     if: github.event_name == 'release'
     outputs:
       s3_ran: ${{ steps.deploy-to-target.outputs.s3_ran }}
@@ -190,14 +193,14 @@ jobs:
           fi
 
       - name: download-artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         if: ${{steps.check-deployment-target.outputs.deploy_target != ''}}
         with:
           path: deploy_artifacts
 
         # Before deoloying to RAN (which is an S3 bucket), authenticate to AWS using GitHub OIDC
       - name: Assume AWS Role
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::325565585839:role/sagebase-github-oidc-sage-bionetworks-synapser
@@ -220,7 +223,7 @@ jobs:
             export S3_RAN=ran.synapse.org
           fi
 
-          curl -s https://raw.githubusercontent.com/Sage-Bionetworks/CI-Build-Tools/master/r-pkg/deploy.sh | bash
+          curl -s https://raw.githubusercontent.com/Sage-Bionetworks/synapser/master/tools/deploy.sh | bash
           echo "::set-output name=s3_ran::$S3_RAN"
 
   # on each of our matrix platforms, download the newly uploaded package from RAN
