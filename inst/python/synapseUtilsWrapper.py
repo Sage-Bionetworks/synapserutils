@@ -30,3 +30,13 @@ class SynapseUtilsWrapper(object):
 
   def walk(self, synId):
     return synapseutils.walk(self.syn, synId)
+
+  def generate_sync_manifest(self, directory_path, parent_id, manifest_path):
+    return synapseutils.generate_sync_manifest(self.syn, directory_path, parent_id, manifest_path)
+
+  def readManifestFile(self, manifestFile):
+    return synapseutils.sync.readManifestFile(self.syn, manifestFile)
+  
+  def notifyMe(self, messageSubject='', retries=0):
+    return synapseutils.notifyMe(self.syn, messageSubject, retries)
+  
