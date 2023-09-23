@@ -30,3 +30,7 @@ class SynapseUtilsWrapper(object):
 
   def walk(self, synId):
     return synapseutils.walk(self.syn, synId)
+
+  def generate_sync_manifest(self, directory_path, parent_id, manifest_path):
+    return synapseutils.generate_sync_manifest(self.syn, directory_path, parent_id, manifest_path)
+  
