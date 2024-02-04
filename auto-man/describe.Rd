@@ -3,29 +3,25 @@
 %  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
 %  Use Git to identify changes in this file which suggest where to change your edited copy.
 %
-\name{walk}
-\alias{walk}
+\name{describe}
+\alias{describe}
 \docType{methods}
 \title{
-walk
+describe
 }
 \description{
-Traverse through the hierarchy of files and folders stored under the synId.
-Has the same behavior as os.walk()
+Gets a synapse entity and returns summary statistics about it.
 
 Arguments:
     syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
-    synId: A synapse ID of a folder or project
-    includeTypes: Must be a list of entity types (ie.["file", "table"])
-                    The "folder" type is always included so the hierarchy can be traversed
+    entity: synapse id of the entity to be described
 }
 \usage{
-walk(syn, synId, includeTypes=c("folder", "file", "table", "link", "entityview", "dockerrepo", "submissionview", "dataset", "materializedview"))
+describe(syn, entity)
 }
 \arguments{
 \item{syn}{}
-\item{synId}{}
-\item{includeTypes}{}
+\item{entity}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

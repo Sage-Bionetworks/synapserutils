@@ -10,40 +10,53 @@
 copy
 }
 \description{
-- This function will assist users in copying entities (Tables, Links, Files, Folders, Projects),
+- This function will assist users in copying entities
+    (
+    [Tables][synapseclient.table.Table],
+    [Links][synapseclient.entity.Link],
+    [Files][synapseclient.entity.File],
+    [Folders][synapseclient.entity.Folder],
+    [Projects][synapseclient.entity.Project]
+    ),
   and will recursively copy everything in directories.
 - A Mapping of the old entities to the new entities will be created and all the wikis of each entity
   will also be copied over and links to synapse Ids will be updated.
+
+Arguments:
+    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
+    entity: A synapse entity ID
+    destinationId: Synapse ID of a folder/project that the copied entity is being copied to
+    skipCopyWikiPage: Skip copying the wiki pages.
+    skipCopyAnnotations: Skips copying the annotations.
+    version: (File copy only) Can specify version of a file. Default to None
+    updateExisting: (File copy only) When the destination has an entity that has the same name,
+                    users can choose to update that entity. It must be the same entity type
+                    Default to False
+    setProvenance: (File copy only) Has three values to set the provenance of the copied entity:
+                    traceback: Sets to the source entity
+                    existing: Sets to source entity's original provenance (if it exists)
+                    None: No provenance is set
+    excludeTypes: (Folder/Project copy only) Accepts a list of entity types (file, table, link)
+                    which determines which entity types to not copy. Defaults to an empty list.
+
+Returns:
+    A mapping between the original and copied entity: {'syn1234':'syn33455'}
 }
 \usage{
-copy(syn, entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE, version=NULL, updateExisting=NULL, setProvenance=NULL, excludeTypes=NULL)
+copy(syn, entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE)
 }
 \arguments{
-\item{syn}{                 A synapse object: syn = synapseclient.login()- Must be logged into synapse}
-\item{entity}{              A synapse entity ID}
-\item{destinationId}{       Synapse ID of a folder/project that the copied entity is being copied to}
-\item{skipCopyWikiPage}{    Skip copying the wiki pages\cr
-                            Default is False}
-\item{skipCopyAnnotations}{ Skips copying the annotations\cr
-                            Default is False}
-\item{version}{optional named parameter:          Can specify version of a file. \cr
-                        Default to None}
-\item{updateExisting}{optional named parameter:   When the destination has an entity that has the same name, \cr
-                        users can choose to update that entity.  \cr
-                        It must be the same entity type\cr
-                        Default to False}
-\item{setProvenance}{optional named parameter:    Has three values to set the provenance of the copied entity:\cr
-                            traceback: Sets to the source entity\cr
-                            existing: Sets to source entity's original provenance (if it exists)\cr
-                            None: No provenance is set}
-\item{excludeTypes}{optional named parameter:     Accepts a list of entity types (file, table, link) which determines which entity types to not copy.\cr
-                        Defaults to an empty list.}
+\item{syn}{}
+\item{entity}{}
+\item{destinationId}{}
+\item{skipCopyWikiPage}{}
+\item{skipCopyAnnotations}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
 }
 \value{
- a mapping between the original and copied entity: {'syn1234':'syn33455'}
+
 }
 \references{
 % A section with references to the literature. Use \url{} or \href{}{} for web pointers.

@@ -3,29 +3,34 @@
 %  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
 %  Use Git to identify changes in this file which suggest where to change your edited copy.
 %
-\name{walk}
-\alias{walk}
+\name{generate_sync_manifest}
+\alias{generate_sync_manifest}
 \docType{methods}
 \title{
-walk
+generate_sync_manifest
 }
 \description{
-Traverse through the hierarchy of files and folders stored under the synId.
-Has the same behavior as os.walk()
+Generate manifest for [syncToSynapse][synapseutils.sync.syncToSynapse] from a local directory.
+
+[Read more about the manifest file format](../../explanations/manifest_tsv/)
 
 Arguments:
     syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
-    synId: A synapse ID of a folder or project
-    includeTypes: Must be a list of entity types (ie.["file", "table"])
-                    The "folder" type is always included so the hierarchy can be traversed
+    directory_path: Path to local directory to be pushed to Synapse.
+    parent_id: Synapse ID of the parent folder/project on Synapse.
+    manifest_path: Path to the manifest file to be generated.
+
+Returns:
+    None
 }
 \usage{
-walk(syn, synId, includeTypes=c("folder", "file", "table", "link", "entityview", "dockerrepo", "submissionview", "dataset", "materializedview"))
+generate_sync_manifest(syn, directory_path, parent_id, manifest_path)
 }
 \arguments{
 \item{syn}{}
-\item{synId}{}
-\item{includeTypes}{}
+\item{directory_path}{}
+\item{parent_id}{}
+\item{manifest_path}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

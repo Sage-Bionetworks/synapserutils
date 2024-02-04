@@ -3,29 +3,40 @@
 %  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
 %  Use Git to identify changes in this file which suggest where to change your edited copy.
 %
-\name{walk}
-\alias{walk}
+\name{migrate_indexed_files}
+\alias{migrate_indexed_files}
 \docType{methods}
 \title{
-walk
+migrate_indexed_files
 }
 \description{
-Traverse through the hierarchy of files and folders stored under the synId.
-Has the same behavior as os.walk()
+Migrate files previously indexed in a sqlite database at the given db_path using the separate
+index_files_for_migration function. The files listed in the index will be migrated according to the
+configuration of that index.
 
 Arguments:
     syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
-    synId: A synapse ID of a folder or project
-    includeTypes: Must be a list of entity types (ie.["file", "table"])
-                    The "folder" type is always included so the hierarchy can be traversed
+    db_path: A path on disk where a sqlite db was created using the index_files_for_migration function.
+    create_table_snapshots: When updating the files in any table, whether the a snapshot of the table is
+                            first created.
+    continue_on_error: Whether any errors encountered while migrating will be raised
+                        or instead just recorded in the sqlite database while allowing the migration
+                        to continue. Default is False (any errors are raised).
+    force: If running in an interactive shell, migration requires an interactice confirmation.
+            This can be bypassed by using the force=True option.
+
+Returns:
+    A MigrationResult object that can be used to inspect the results of the migration.
 }
 \usage{
-walk(syn, synId, includeTypes=c("folder", "file", "table", "link", "entityview", "dockerrepo", "submissionview", "dataset", "materializedview"))
+migrate_indexed_files(syn, db_path, create_table_snapshots=TRUE, continue_on_error=FALSE, force=FALSE)
 }
 \arguments{
 \item{syn}{}
-\item{synId}{}
-\item{includeTypes}{}
+\item{db_path}{}
+\item{create_table_snapshots}{}
+\item{continue_on_error}{}
+\item{force}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

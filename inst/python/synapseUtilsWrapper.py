@@ -8,10 +8,9 @@ class SynapseUtilsWrapper(object):
   def __init__(self, synapse):
     self.syn = synapse
 
-# All methods below share a common synapse object
-
-  def changeFileMetaData(self, entity, downloadAs = None, contentType = None):
-    return synapseutils.changeFileMetaData(self.syn, entity, downloadAs, contentType)
+  # All methods below share a common synapse object
+  def changeFileMetaData(self, entity, downloadAs = None, contentType = None, forceVersion = True):
+    return synapseutils.changeFileMetaData(self.syn, entity, downloadAs, contentType, forceVersion)
 
   def copy(self, entity, destinationId, skipCopyWikiPage = False, skipCopyAnnotations = False, **kwargs):
     return synapseutils.copy(self.syn, entity, destinationId, skipCopyWikiPage, skipCopyAnnotations, **kwargs)
@@ -34,3 +33,5 @@ class SynapseUtilsWrapper(object):
   def generate_sync_manifest(self, directory_path, parent_id, manifest_path):
     return synapseutils.generate_sync_manifest(self.syn, directory_path, parent_id, manifest_path)
   
+  def generateManifest(self, allFiles, filename, provenance_cache=None):
+    return synapseutils.generateManifest(self.syn, allFiles, filename, provenance_cache)

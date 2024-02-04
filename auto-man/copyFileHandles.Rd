@@ -10,24 +10,48 @@
 copyFileHandles
 }
 \description{
-Given a list of fileHandle Objects, copy the fileHandles
+Given a list of fileHandle Ids or Objects, copy the fileHandles
+
+Arguments:
+    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
+    fileHandles: List of fileHandle Ids or Objects
+    associateObjectTypes: List of associated object types: FileEntity, TableEntity,
+                            WikiAttachment, UserProfileAttachment, MessageAttachment,
+                            TeamAttachment, SubmissionAttachment, VerificationSubmission
+                            (Must be the same length as fileHandles)
+    associateObjectIds: List of associated object Ids: If copying a file,
+                        the objectId is the synapse id, and if copying a wiki attachment,
+                        the object id is the wiki subpage id.
+                        (Must be the same length as fileHandles)
+    newContentTypes: List of content types. Set each item to a new content type for each file
+                        handle, or leave the item as None to keep the original content type.
+                        Default None, which keeps all original content types.
+    newFileNames: List of filenames. Set each item to a new filename for each file handle,
+                    or leave the item as None to keep the original name. Default None,
+                    which keeps all original file names.
+
+Returns:
+    List of batch filehandle copy results, can include failureCodes: UNAUTHORIZED and NOT_FOUND
+
+Raises:
+    ValueError: If length of all input arguments are not the same
 }
 \usage{
-copyFileHandles(syn, fileHandles, associateObjectTypes, associateObjectIds, contentTypes, fileNames)
+copyFileHandles(syn, fileHandles, associateObjectTypes, associateObjectIds, newContentTypes=NULL, newFileNames=NULL)
 }
 \arguments{
 \item{syn}{}
-\item{fileHandles}{          List of fileHandle Ids or Objects}
-\item{associateObjectTypes}{ List of associated object types: FileEntity, TableEntity, WikiAttachment, UserProfileAttachment, MessageAttachment, TeamAttachment, SubmissionAttachment, VerificationSubmission (Must be the same length as fileHandles)}
-\item{associateObjectIds}{   List of associated object Ids: If copying a file, the objectId is the synapse id, and if copying a wiki attachment, the object id is the wiki subpage id. (Must be the same length as fileHandles)}
-\item{contentTypes}{         List of content types (Can change a filetype of a filehandle).}
-\item{fileNames}{            List of filenames (Can change a filename of a filehandle).}
+\item{fileHandles}{}
+\item{associateObjectTypes}{}
+\item{associateObjectIds}{}
+\item{newContentTypes}{}
+\item{newFileNames}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
 }
 \value{
-                     List of batch filehandle copy results, can include failureCodes: UNAUTHORIZED and NOT_FOUND
+
 }
 \references{
 % A section with references to the literature. Use \url{} or \href{}{} for web pointers.

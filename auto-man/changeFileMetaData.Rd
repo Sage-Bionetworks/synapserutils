@@ -10,22 +10,34 @@
 changeFileMetaData
 }
 \description{
+Change File Entity metadata like the download as name.
 
+Arguments:
+    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
+    entity: Synapse entity Id or object.
+    contentType: Specify content type to change the content type of a filehandle.
+    downloadAs: Specify filename to change the filename of a filehandle.
+    forceVersion: Indicates whether the method should increment the version of
+                    the object even if nothing has changed. Defaults to True.
+
+Returns:
+    Synapse Entity
 }
 \usage{
-changeFileMetaData(syn, entity, downloadAs=NULL, contentType=NULL)
+changeFileMetaData(syn, entity, downloadAs=NULL, contentType=NULL, forceVersion=TRUE)
 }
 \arguments{
 \item{syn}{}
-\item{entity}{        Synapse entity Id or object}
-\item{downloadAs}{    Specify filename to change the filename of a filehandle}
-\item{contentType}{   Specify content type to change the content type of a filehandle}
+\item{entity}{}
+\item{downloadAs}{}
+\item{contentType}{}
+\item{forceVersion}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
 }
 \value{
-              Synapse Entity
+
 }
 \references{
 % A section with references to the literature. Use \url{} or \href{}{} for web pointers.

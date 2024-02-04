@@ -11,32 +11,45 @@ copyWiki
 }
 \description{
 Copies wikis and updates internal links
+
+Arguments:
+    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
+    entity: A synapse ID of an entity whose wiki you want to copy
+    destinationId: Synapse ID of a folder/project that the wiki wants to be copied to
+    updateLinks: Update all the internal links.
+                 (e.g. syn1234/wiki/34345 becomes syn3345/wiki/49508)
+    updateSynIds: Update all the synapse ID's referenced in the wikis.
+                    (e.g. syn1234 becomes syn2345)
+                    Defaults to True but needs an entityMap
+    entityMap: An entity map {'oldSynId','newSynId'} to update the synapse IDs
+                referenced in the wiki.
+    entitySubPageId: Can specify subPageId and copy all of its subwikis
+                        Defaults to None, which copies the entire wiki subPageId can be found:
+                        https://www.synapse.org/#!Synapse:syn123/wiki/1234
+                        In this case, 1234 is the subPageId.
+    destinationSubPageId: Can specify destination subPageId to copy wikis to.
+
+Returns:
+    A list of Objects with three fields: id, title and parentId.
 }
 \usage{
 copyWiki(syn, entity, destinationId, entitySubPageId=NULL, destinationSubPageId=NULL, updateLinks=TRUE, updateSynIds=TRUE, entityMap=NULL)
 }
 \arguments{
-\item{syn}{                     A synapse object: syn = synapseclient.login()- Must be logged into synapse}
-\item{entity}{                  A synapse ID of an entity whose wiki you want to copy}
-\item{destinationId}{           Synapse ID of a folder/project that the wiki wants to be copied to}
-\item{entitySubPageId}{         Can specify subPageId and copy all of its subwikis\cr
-                                Defaults to None, which copies the entire wiki\cr
-                                subPageId can be found: https://www.synapse.org/#!Synapse:syn123/wiki/1234\cr
-                                In this case, 1234 is the subPageId. }
-\item{destinationSubPageId}{    Can specify destination subPageId to copy wikis to\cr
-                                Defaults to None}
-\item{updateLinks}{             Update all the internal links. (e.g. syn1234/wiki/34345 becomes syn3345/wiki/49508)\cr
-                                Defaults to True}
-\item{updateSynIds}{            Update all the synapse ID's referenced in the wikis. (e.g. syn1234 becomes syn2345)\cr
-                                Defaults to True but needs an entityMap}
-\item{entityMap}{               An entity map {'oldSynId','newSynId'} to update the synapse IDs referenced in the wiki\cr
-                                Defaults to None }
+\item{syn}{}
+\item{entity}{}
+\item{destinationId}{}
+\item{entitySubPageId}{}
+\item{destinationSubPageId}{}
+\item{updateLinks}{}
+\item{updateSynIds}{}
+\item{entityMap}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
 }
 \value{
- A list of Objects with three fields: id, title and parentId.
+
 }
 \references{
 % A section with references to the literature. Use \url{} or \href{}{} for web pointers.
