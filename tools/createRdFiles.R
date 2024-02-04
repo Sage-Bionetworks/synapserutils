@@ -22,7 +22,12 @@ reticulate::py_run_string("import sys")
 reticulate::py_run_string(sprintf("sys.path.append(\"%s\")", file.path(srcRootDir, "inst", "python")))
 
 # generate the Python documentation
+# generateRdFiles(srcRootDir,
+#                 pyPkg = "synapseutils",
+#                 container = "synapseutils",
+#                 functionFilter = .selectSynapseUtilsFunctionInfo)
 generateRdFiles(srcRootDir,
-                pyPkg = "synapseutils",
-                container = "synapseutils",
+                pyPkg = "synapseUtilsWrapper",
+                container = "synapseUtilsWrapper.SynapseUtilsWrapper",
                 functionFilter = .selectSynapseUtilsFunctionInfo)
+

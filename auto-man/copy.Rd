@@ -23,7 +23,6 @@ copy
   will also be copied over and links to synapse Ids will be updated.
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     entity: A synapse entity ID
     destinationId: Synapse ID of a folder/project that the copied entity is being copied to
     skipCopyWikiPage: Skip copying the wiki pages.
@@ -43,10 +42,9 @@ Returns:
     A mapping between the original and copied entity: {'syn1234':'syn33455'}
 }
 \usage{
-copy(syn, entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE)
+copy(entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE)
 }
 \arguments{
-\item{syn}{}
 \item{entity}{}
 \item{destinationId}{}
 \item{skipCopyWikiPage}{}

@@ -13,7 +13,6 @@ changeFileMetaData
 Change File Entity metadata like the download as name.
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     entity: Synapse entity Id or object.
     contentType: Specify content type to change the content type of a filehandle.
     downloadAs: Specify filename to change the filename of a filehandle.
@@ -24,10 +23,9 @@ Returns:
     Synapse Entity
 }
 \usage{
-changeFileMetaData(syn, entity, downloadAs=NULL, contentType=NULL, forceVersion=TRUE)
+changeFileMetaData(entity, downloadAs=NULL, contentType=NULL, forceVersion=TRUE)
 }
 \arguments{
-\item{syn}{}
 \item{entity}{}
 \item{downloadAs}{}
 \item{contentType}{}

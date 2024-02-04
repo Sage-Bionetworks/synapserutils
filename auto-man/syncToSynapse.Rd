@@ -36,7 +36,6 @@ the datetime objects which may have timezone information are converted to millis
 since epoch.
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     manifestFile: A tsv file with file locations and metadata to be pushed to Synapse.
     dryRun: Performs validation without uploading if set to True.
     sendMessages: Sends out messages on completion if set to True.
@@ -45,10 +44,9 @@ Returns:
     None
 }
 \usage{
-syncToSynapse(syn, manifestFile, dryRun=FALSE, sendMessages=TRUE, retries=4)
+syncToSynapse(manifestFile, dryRun=FALSE, sendMessages=TRUE, retries=4)
 }
 \arguments{
-\item{syn}{}
 \item{manifestFile}{}
 \item{dryRun}{}
 \item{sendMessages}{}

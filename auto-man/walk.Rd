@@ -14,18 +14,15 @@ Traverse through the hierarchy of files and folders stored under the synId.
 Has the same behavior as os.walk()
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     synId: A synapse ID of a folder or project
     includeTypes: Must be a list of entity types (ie.["file", "table"])
                     The "folder" type is always included so the hierarchy can be traversed
 }
 \usage{
-walk(syn, synId, includeTypes=c("folder", "file", "table", "link", "entityview", "dockerrepo", "submissionview", "dataset", "materializedview"))
+walk(synId)
 }
 \arguments{
-\item{syn}{}
 \item{synId}{}
-\item{includeTypes}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

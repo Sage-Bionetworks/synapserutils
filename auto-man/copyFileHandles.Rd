@@ -13,7 +13,6 @@ copyFileHandles
 Given a list of fileHandle Ids or Objects, copy the fileHandles
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     fileHandles: List of fileHandle Ids or Objects
     associateObjectTypes: List of associated object types: FileEntity, TableEntity,
                             WikiAttachment, UserProfileAttachment, MessageAttachment,
@@ -37,15 +36,14 @@ Raises:
     ValueError: If length of all input arguments are not the same
 }
 \usage{
-copyFileHandles(syn, fileHandles, associateObjectTypes, associateObjectIds, newContentTypes=NULL, newFileNames=NULL)
+copyFileHandles(fileHandles, associateObjectTypes, associateObjectIds, contentTypes, fileNames)
 }
 \arguments{
-\item{syn}{}
 \item{fileHandles}{}
 \item{associateObjectTypes}{}
 \item{associateObjectIds}{}
-\item{newContentTypes}{}
-\item{newFileNames}{}
+\item{contentTypes}{}
+\item{fileNames}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

@@ -13,7 +13,6 @@ copyWiki
 Copies wikis and updates internal links
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     entity: A synapse ID of an entity whose wiki you want to copy
     destinationId: Synapse ID of a folder/project that the wiki wants to be copied to
     updateLinks: Update all the internal links.
@@ -33,10 +32,9 @@ Returns:
     A list of Objects with three fields: id, title and parentId.
 }
 \usage{
-copyWiki(syn, entity, destinationId, entitySubPageId=NULL, destinationSubPageId=NULL, updateLinks=TRUE, updateSynIds=TRUE, entityMap=NULL)
+copyWiki(entity, destinationId, entitySubPageId=NULL, destinationSubPageId=NULL, updateLinks=TRUE, updateSynIds=TRUE, entityMap=NULL)
 }
 \arguments{
-\item{syn}{}
 \item{entity}{}
 \item{destinationId}{}
 \item{entitySubPageId}{}

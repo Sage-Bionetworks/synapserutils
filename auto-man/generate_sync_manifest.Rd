@@ -12,10 +12,7 @@ generate_sync_manifest
 \description{
 Generate manifest for [syncToSynapse][synapseutils.sync.syncToSynapse] from a local directory.
 
-[Read more about the manifest file format](../../explanations/manifest_tsv/)
-
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     directory_path: Path to local directory to be pushed to Synapse.
     parent_id: Synapse ID of the parent folder/project on Synapse.
     manifest_path: Path to the manifest file to be generated.
@@ -24,10 +21,9 @@ Returns:
     None
 }
 \usage{
-generate_sync_manifest(syn, directory_path, parent_id, manifest_path)
+generate_sync_manifest(directory_path, parent_id, manifest_path)
 }
 \arguments{
-\item{syn}{}
 \item{directory_path}{}
 \item{parent_id}{}
 \item{manifest_path}{}

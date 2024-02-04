@@ -3,25 +3,30 @@
 %  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
 %  Use Git to identify changes in this file which suggest where to change your edited copy.
 %
-\name{describe}
-\alias{describe}
+\name{generateManifest}
+\alias{generateManifest}
 \docType{methods}
 \title{
-describe
+generateManifest
 }
 \description{
-Gets a synapse entity and returns summary statistics about it.
+Generates a manifest file based on a list of entities objects.
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
-    entity: synapse id of the entity to be described
+    allFiles: A list of File Entity objects on Synapse (can't be Synapse IDs)
+    filename: file where manifest will be written
+    provenance_cache: an optional dict of known provenance dicts keyed by entity
+                      ids
+Returns:
+    None
 }
 \usage{
-describe(syn, entity)
+generateManifest(allFiles, filename, provenance_cache=NULL)
 }
 \arguments{
-\item{syn}{}
-\item{entity}{}
+\item{allFiles}{}
+\item{filename}{}
+\item{provenance_cache}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

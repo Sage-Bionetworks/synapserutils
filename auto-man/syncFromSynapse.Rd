@@ -10,8 +10,8 @@
 syncFromSynapse
 }
 \description{
-Synchronizes all the files in a folder (including subfolders) from Synapse
-and adds a readme manifest with file metadata.
+Synchronizes a File entity, or a Folder entity, meaning all the files in a folder
+(including subfolders) from Synapse, and adds a readme manifest with file metadata.
 
 There are a few conversions around annotations to call out here.
 
@@ -33,7 +33,6 @@ annotation value is a list of objects. In this case we are converting the list
 into a single cell of data with a comma `,` delimiter wrapped in brackets `[]`.
 
 Arguments:
-    syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
     entity: A Synapse ID, a Synapse Entity object of type file, folder or
             project.
     path: An optional path where the file hierarchy will be reproduced. If not
@@ -50,11 +49,13 @@ Returns:
         [tables][synapseclient.Table], [links][synapseclient.Link])
 
 
-This function will crawl all subfolders of the project/folder specified by
-`entity` and download all files that have not already been downloaded. If
-there are newer files in Synapse (or a local file has been edited outside of the
-cache) since the last download then local the file will be replaced by the new
-file unless "ifcollision" is changed.
+When entity is a Project or Folder, this function will crawl all subfolders
+of the project/folder specified by `entity` and download all files that have
+not already been downloaded. When entity is a File the function will download the
+latest version of the file unless version is denoted in the synid with .version
+notiation (e.g. syn123.1) If there are newer files in Synapse (or a local file
+has been edited outside of the cache) since the last download then local the file
+will be replaced by the new file unless "ifcollision" is changed.
 
 If the files are being downloaded to a specific location outside of the Synapse
 cache a file (SYNAPSE_METADATA_MANIFEST.tsv) will also be added in the path that
@@ -66,17 +67,14 @@ See also:
 - [synapseutils.sync.syncToSynapse][]
 }
 \usage{
-syncFromSynapse(syn, entity, path=NULL, ifcollision=overwrite.local, allFiles=NULL, followLink=FALSE, manifest=all, downloadFile=TRUE)
+syncFromSynapse(entity, path=NULL, ifcollision=overwrite.local, allFiles=NULL, followLink=FALSE)
 }
 \arguments{
-\item{syn}{}
 \item{entity}{}
 \item{path}{}
 \item{ifcollision}{}
 \item{allFiles}{}
 \item{followLink}{}
-\item{manifest}{}
-\item{downloadFile}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
