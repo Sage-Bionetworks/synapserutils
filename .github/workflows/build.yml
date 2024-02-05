@@ -108,6 +108,14 @@ jobs:
         run: |
           pip install 'synapseclient[pandas]'
 
+      - name: use conda
+        shell: bash
+        run: |
+          Rscript -e "install.packages('reticulate', repos=c('https://cloud.r-project.org/'))"
+          Rscript -e "reticulate::install_miniconda()"
+          echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
+          Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.10'))"
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache: true
@@ -122,13 +130,6 @@ jobs:
           # Rscript -e "install.packages('reticulate')"
           # Rscript -e "remotes.install_github('remotes')"
 
-      - name: use conda
-        shell: bash
-        run: |
-          Rscript -e "install.packages('reticulate', repos=c('https://cloud.r-project.org/'))"
-          Rscript -e "reticulate::install_miniconda()"
-          echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
-          Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.10'))"
 
       - name: linux-build-package
         if: ${{runner.os == 'linux'}}
