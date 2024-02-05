@@ -34,12 +34,17 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: setup-r
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.r }}
+
+      - name: Set up Python Version
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
       - name: shared-env
         id: shared-env
@@ -83,8 +88,8 @@ jobs:
           echo "package_version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
           echo "r_minor_version=$R_MINOR_VERSION" >> $GITHUB_OUTPUT
 
-      - name: setup-r-mac-12
-        if: ${{matrix.os == 'macos-12'}}
+      - name: setup-r-mac-13
+        if: ${{matrix.os == 'macos-13'}}
         run: |
           R_LIBS_USER=${GITHUB_WORKSPACE}/R_LIBS
           rm -rf R_LIBS_USER
@@ -110,27 +115,34 @@ jobs:
         run: |
           pip install pandas
           pip install synapseclient
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache: true
-          cache-version: 1
+          cache-version: 2
+          architecture: 'x64'
+
       - name: use virtualenv
         shell: bash
         run: |
           Rscript -e "reticulate::virtualenv_create('r-reticulate')"
           Rscript -e "reticulate::use_virtualenv('r-reticulate')"
+
       - name: linux-build-package
         if: ${{runner.os == 'linux'}}
         run: |
           R CMD build ./
           R CMD INSTALL ./ --library=$R_LIBS_USER --no-test-load
           echo "ARTIFACT_EXTENSION=tar.gz" >> $GITHUB_ENV
+
       - name: mac-build-package
         if: ${{runner.os == 'macOS'}}
         run: |
+
             R CMD build ./
             R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load
             echo "ARTIFACT_EXTENSION=tgz" >> $GITHUB_ENV
+
       - name: windows-build-package
         if: ${{runner.os == 'Windows'}}
         shell: bash
