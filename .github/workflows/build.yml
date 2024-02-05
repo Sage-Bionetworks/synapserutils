@@ -124,7 +124,7 @@ jobs:
       - name: use conda
         shell: bash
         run: |
-          Rscript -e "install.packages('reticulate')"
+          Rscript -e "install.packages('reticulate', repos=c('https://cloud.r-project.org/'))"
           Rscript -e "reticulate::install_miniconda()"
           echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
           Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.10'))"
