@@ -1,7 +1,7 @@
 Package: synapserutils
 Type: Package
 Title: Collection of utilities building on top of synapser
-Version: 1.0.0
+Version: 1.1.0
 Date: 2019-05-31
 Authors@R: c(
   person("Thomas", "Yu", role = c("aut", "cre"), email = "thomas.yu@sagebase.org"),
@@ -16,10 +16,10 @@ Imports:
   synapser
 Depends:
   R(>= 4.0),
-  synapser(>= 1.0.0)
+  synapser(>= 1.1.0)
 Remotes:
   reticulate@1.28,
-  Sage-Bionetworks/synapser@1.1.0
+  Sage-Bionetworks/synapser@2.0.0
 Suggests: testthat, knitr, rmarkdown
 URL: https://www.synapse.org
 BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues

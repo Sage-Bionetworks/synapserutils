@@ -3,26 +3,30 @@
 %  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
 %  Use Git to identify changes in this file which suggest where to change your edited copy.
 %
-\name{walk}
-\alias{walk}
+\name{generateManifest}
+\alias{generateManifest}
 \docType{methods}
 \title{
-walk
+generateManifest
 }
 \description{
-Traverse through the hierarchy of files and folders stored under the synId.
-Has the same behavior as os.walk()
+Generates a manifest file based on a list of entities objects.
 
 Arguments:
-    synId: A synapse ID of a folder or project
-    includeTypes: Must be a list of entity types (ie.["file", "table"])
-                    The "folder" type is always included so the hierarchy can be traversed
+    allFiles: A list of File Entity objects on Synapse (can't be Synapse IDs)
+    filename: file where manifest will be written
+    provenance_cache: an optional dict of known provenance dicts keyed by entity
+                      ids
+Returns:
+    None
 }
 \usage{
-walk(synId)
+generateManifest(allFiles, filename, provenance_cache=NULL)
 }
 \arguments{
-\item{synId}{}
+\item{allFiles}{}
+\item{filename}{}
+\item{provenance_cache}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
