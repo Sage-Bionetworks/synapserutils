@@ -169,7 +169,7 @@ jobs:
           echo "UPLOAD_NAME=$UPLOAD_NAME" >> $GITHUB_ENV
 
       - name: upload-artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: ${{env.UPLOAD_NAME}}
           path: ${{env.ARTIFACT_NAME}}
@@ -185,6 +185,8 @@ jobs:
       s3_ran: ${{ steps.deploy-to-target.outputs.s3_ran }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: check-deployment-target
         id: check-deployment-target
         if: ${{github.event.action == 'published'}}
