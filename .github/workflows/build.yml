@@ -121,6 +121,14 @@ jobs:
           # Rscript -e "install.packages('reticulate')"
           # Rscript -e "remotes.install_github('remotes')"
 
+      - name: use conda
+        shell: bash
+        run: |
+          Rscript -e "install.packages('reticulate')"
+          Rscript -e "reticulate::install_miniconda()"
+          echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
+          Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.10'))"
+
       - name: linux-build-package
         if: ${{runner.os == 'linux'}}
         run: |
@@ -158,8 +166,9 @@ jobs:
           UPLOAD_NAME="label=${OS_LABEL}-RVERS-${{ steps.shared-env.outputs.r_minor_version }}"
           echo "ARTIFACT_NAME=$ARTIFACT_NAME" >> $GITHUB_ENV
           echo "UPLOAD_NAME=$UPLOAD_NAME" >> $GITHUB_ENV
+
       - name: upload-artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{env.UPLOAD_NAME}}
           path: ${{env.ARTIFACT_NAME}}
@@ -248,7 +257,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: setup-r
         uses: r-lib/actions/setup-r@v2
