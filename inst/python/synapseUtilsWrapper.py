@@ -18,21 +18,24 @@ class SynapseUtilsWrapper(object):
     downloadAs: str = None,
     contentType: str = None,
     forceVersion: bool = True,
+    name: str = None,
   ) -> Entity:
     """
     Change File Entity metadata like the download as name.
 
     Arguments:
+        syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
         entity: Synapse entity Id or object.
-        contentType: Specify content type to change the content type of a filehandle.
         downloadAs: Specify filename to change the filename of a filehandle.
+        contentType: Specify content type to change the content type of a filehandle.
         forceVersion: Indicates whether the method should increment the version of
                         the object even if nothing has changed. Defaults to True.
+        name: Specify filename to change the filename of the file.
 
     Returns:
         Synapse Entity
     """
-    return synapseutils.changeFileMetaData(self.syn, entity, downloadAs, contentType, forceVersion)
+    return synapseutils.changeFileMetaData(self.syn, entity, downloadAs = downloadAs, contentType = contentType, forceVersion = forceVersion, name = name)
 
   def copy(self, entity, destinationId, skipCopyWikiPage = False, skipCopyAnnotations = False, **kwargs):
     """
@@ -69,11 +72,12 @@ class SynapseUtilsWrapper(object):
     """
     return synapseutils.copy(self.syn, entity, destinationId, skipCopyWikiPage, skipCopyAnnotations, **kwargs)
 
-  def copyFileHandles(self, fileHandles, associateObjectTypes, associateObjectIds, contentTypes, fileNames):
+  def copyFileHandles(self, fileHandles, associateObjectTypes, associateObjectIds, newContentTypes = None, newFileNames = None):
     """
     Given a list of fileHandle Ids or Objects, copy the fileHandles
 
     Arguments:
+        syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
         fileHandles: List of fileHandle Ids or Objects
         associateObjectTypes: List of associated object types: FileEntity, TableEntity,
                                 WikiAttachment, UserProfileAttachment, MessageAttachment,
@@ -96,7 +100,7 @@ class SynapseUtilsWrapper(object):
     Raises:
         ValueError: If length of all input arguments are not the same
     """
-    return synapseutils.copyFileHandles(self.syn, fileHandles, associateObjectTypes, associateObjectIds, contentTypes, fileNames)
+    return synapseutils.copyFileHandles(self.syn, fileHandles, associateObjectTypes, associateObjectIds, newContentTypes = newContentTypes, newFileNames = newFileNames)
 
   def copyWiki(self, entity, destinationId, entitySubPageId = None, destinationSubPageId = None, updateLinks = True, updateSynIds = True, entityMap = None):
     """
@@ -105,6 +109,11 @@ class SynapseUtilsWrapper(object):
     Arguments:
         entity: A synapse ID of an entity whose wiki you want to copy
         destinationId: Synapse ID of a folder/project that the wiki wants to be copied to
+        entitySubPageId: Can specify subPageId and copy all of its subwikis
+                            Defaults to None, which copies the entire wiki subPageId can be found:
+                            https://www.synapse.org/#!Synapse:syn123/wiki/1234
+                            In this case, 1234 is the subPageId.
+        destinationSubPageId: Can specify destination subPageId to copy wikis to.
         updateLinks: Update all the internal links.
                      (e.g. syn1234/wiki/34345 becomes syn3345/wiki/49508)
         updateSynIds: Update all the synapse ID's referenced in the wikis.
@@ -112,18 +121,13 @@ class SynapseUtilsWrapper(object):
                         Defaults to True but needs an entityMap
         entityMap: An entity map {'oldSynId','newSynId'} to update the synapse IDs
                     referenced in the wiki.
-        entitySubPageId: Can specify subPageId and copy all of its subwikis
-                            Defaults to None, which copies the entire wiki subPageId can be found:
-                            https://www.synapse.org/#!Synapse:syn123/wiki/1234
-                            In this case, 1234 is the subPageId.
-        destinationSubPageId: Can specify destination subPageId to copy wikis to.
-
+        
     Returns:
         A list of Objects with three fields: id, title and parentId.
     """
     return synapseutils.copyWiki(self.syn, entity, destinationId, entitySubPageId, destinationSubPageId, updateLinks, updateSynIds, entityMap)
 
-  def syncFromSynapse(self, entity, path = None, ifcollision = 'overwrite.local', allFiles = None, followLink = False):
+  def syncFromSynapse(self, entity, path = None, ifcollision = 'overwrite.local', allFiles = None, followLink = False, manifest = "all", downloadFile = True):
     """Synchronizes a File entity, or a Folder entity, meaning all the files in a folder
     (including subfolders) from Synapse, and adds a readme manifest with file metadata.
 
@@ -147,12 +151,18 @@ class SynapseUtilsWrapper(object):
     into a single cell of data with a comma `,` delimiter wrapped in brackets `[]`.
 
     Arguments:
+        syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
         entity: A Synapse ID, a Synapse Entity object of type file, folder or
                 project.
         path: An optional path where the file hierarchy will be reproduced. If not
-              specified the files will by default be placed in the synapseCache.
+            specified the files will by default be placed in the synapseCache. A path
+            is required in order to create a manifest file. A manifest is TSV file
+            that is automatically created that contains metadata (annotations, storage
+            location and provenance) of all downloaded files. If no files were
+            downloaded, no manifest file will be created.
         ifcollision: Determines how to handle file collisions. Maybe
                      "overwrite.local", "keep.local", or "keep.both".
+        allFiles: Deprecated and not to be used. This will be removed in v5.0.0.
         followLink: Determines whether the link returns the target Entity.
         manifest: Determines whether creating manifest file automatically. The
                   optional values here (`all`, `root`, `suppress`).
@@ -180,16 +190,14 @@ class SynapseUtilsWrapper(object):
 
     - [synapseutils.sync.syncToSynapse][]
     """
-    return synapseutils.syncFromSynapse(self.syn, entity, path, ifcollision, allFiles, followLink)
+    return synapseutils.syncFromSynapse(self.syn, entity, path = path, ifcollision = ifcollision, allFiles = allFiles, followLink = followLink, manifest = manifest, downloadFile = downloadFile)
 
-  def syncToSynapse(self, manifestFile, dryRun = False, sendMessages = True, retries = MAX_RETRIES):
+  def syncToSynapse(self, manifestFile, dryRun = False, sendMessages = True, retries = MAX_RETRIES, merge_existing_annotations = True, associate_activity_to_new_version = False):
     """Synchronizes files specified in the manifest file to Synapse.
 
     Given a file describing all of the uploads, this uploads the content to Synapse and
     optionally notifies you via Synapse messagging (email) at specific intervals, on
     errors and on completion.
-
-    [Read more about the manifest file format](../../explanations/manifest_tsv/)
 
     There are a few conversions around annotations to call out here.
 
@@ -212,13 +220,21 @@ class SynapseUtilsWrapper(object):
         manifestFile: A tsv file with file locations and metadata to be pushed to Synapse.
         dryRun: Performs validation without uploading if set to True.
         sendMessages: Sends out messages on completion if set to True.
+        retries: Number of retries to attempt if an error occurs.
+        merge_existing_annotations: If True, will merge the annotations in the manifest
+            file with the existing annotations on Synapse. If False, will overwrite the
+            existing annotations on Synapse with the annotations in the manifest file.
+        associate_activity_to_new_version: If True, and a version update occurs, the
+            existing activity in Synapse will be associated with the new version. The
+            exception is if you are specifying new values to be used/executed, it will
+            create a new activity for the new version of the entity.
 
     Returns:
         None
     """
-    return synapseutils.syncToSynapse(self.syn, manifestFile, dryRun, sendMessages, retries = retries)
+    return synapseutils.syncToSynapse(self.syn, manifestFile, dryRun, sendMessages, retries = retries, merge_existing_annotations = merge_existing_annotations, associate_activity_to_new_version = associate_activity_to_new_version)
 
-  def walk(self, synId):
+  def walk(self, synId, includeTypes = ["folder", "file", "table", "link", "entityview", "dockerrepo", "submissionview", "dataset", "materializedview"]):
     """
     Traverse through the hierarchy of files and folders stored under the synId.
     Has the same behavior as os.walk()
@@ -228,7 +244,7 @@ class SynapseUtilsWrapper(object):
         includeTypes: Must be a list of entity types (ie.["file", "table"])
                         The "folder" type is always included so the hierarchy can be traversed
     """
-    return synapseutils.walk(self.syn, synId)
+    return synapseutils.walk(self.syn, synId, includeTypes = includeTypes)
 
   def generate_sync_manifest(self, directory_path, parent_id, manifest_path):
     """Generate manifest for [syncToSynapse][synapseutils.sync.syncToSynapse] from a local directory.

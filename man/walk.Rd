@@ -5,13 +5,15 @@
 walk
 }
 \description{
-Traverse the hierarchy of files and folders stored under the synId.
+Traverse the hierarchy of files and folders stored under the synId. 
+Has the same behavior as os.walk()
 }
 \usage{
 walk(synId)
 }
 \arguments{
 \item{synId}{          A synapse ID of a folder or project}
+\item{includeTypes}{Must be a list of entity types (ie.c("file", "table") The "folder" type is always included so the hierarchy can be traversed. Defaults to c("folder", "file", "table", "link", "entityview", "dockerrepo", "submissionview", "dataset", "materializedview")}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
@@ -35,10 +37,24 @@ walk(synId)
 % for testing that should not be shown to users, but will be run by example().
 \examples{
   \dontrun{
+    # default entity types
     walkedPath <- walk("syn1234")
+    walkedPath$asList()
+    # or 
+    as.list(walkedPath)
+    
+    # Exclude tables and views
+    walkedPath <- walk(synId="syn1234", includeTypes=c("file"))
+    walkedPath$asList()
+    # or 
+    as.list(walkedPath)
+    
+    # Exclude files
+    walkedPath <- walk(synId="syn1234", includeTypes=c("table"))
+    walkedPath$asList()
+    # or 
     as.list(walkedPath)
   }
 }
-
 
 

@@ -11,33 +11,29 @@ copy
   will also be copied over and links to synapse Ids will be updated.
 }
 \usage{
-copy(entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE, version=NULL, updateExisting=NULL, setProvenance=NULL, excludeTypes=NULL)
+copy(entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE, version=NULL, updateExisting=FALSE, setProvenance=NULL, excludeTypes=NULL)
 }
 \arguments{
 \item{entity}{              A synapse entity ID}
 \item{destinationId}{       Synapse ID of a folder/project that the copied entity is being copied to}
 \item{skipCopyWikiPage}{    Skip copying the wiki pages\cr
-                            Default is False}
+                            Default is FALSE.}
 \item{skipCopyAnnotations}{ Skips copying the annotations\cr
-                            Default is False}
-\item{version}{optional named parameter:          Can specify version of a file. \cr
-                        Default to None}
-\item{updateExisting}{optional named parameter:   When the destination has an entity that has the same name, \cr
-                        users can choose to update that entity.  \cr
-                        It must be the same entity type\cr
-                        Default to False}
-\item{setProvenance}{optional named parameter:    Has three values to set the provenance of the copied entity:\cr
-                            traceback: Sets to the source entity\cr
-                            existing: Sets to source entity's original provenance (if it exists)\cr
-                            None: No provenance is set}
-\item{excludeTypes}{optional named parameter:     Accepts a list of entity types (file, table, link) which determines which entity types to not copy.\cr
-                        Defaults to an empty list.}
+                            Default is FALSE.}
+\item{version}{Optional named parameter. (File copy only) Can specify version of a file. Defaults to NULL.}
+\item{updateExisting}{Optional named parameter. 
+                      (File copy only) When the destination has an entity that has the same name, 
+                      users can choose to update that entity. It must be the same entity type Defaults to FALSE.}
+\item{setProvenance}{Optional named parameter. (File copy only) Has three values to set the provenance of the copied entity: \cr
+                     \bold{traceback}: Sets to the source entity \cr \bold{existing}: Sets to source entity's original provenance (if it exists) \cr
+                     \bold{None}: No provenance is set}
+\item{excludeTypes}{Optional named parameter. (Folder/Project copy only) Accepts a list of entity types (file, table, link) which determines which entity types to not copy. Defaults to an empty list.}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
 }
 \value{
- a mapping between the original and copied entity: {'syn1234':'syn33455'}
+ A mapping between the original and copied entity: {'syn1234':'syn33455'}
 }
 \references{
 % A section with references to the literature. Use \url{} or \href{}{} for web pointers.
@@ -55,7 +51,11 @@ copy(entity, destinationId, skipCopyWikiPage=FALSE, skipCopyAnnotations=FALSE, v
 % for testing that should not be shown to users, but will be run by example().
 \examples{
   \dontrun{
-    copy("syn1234", "syn33455")
+    # copying files
+    copy(syn, "syn12345", "syn45678", updateExisting=False, setProvenance = "traceback",version = None)
+    
+    # copying Folders/Projects
+    copy(syn, "syn123450", "syn345678", excludeTypes = list("file","table"))
   }
 }
 
