@@ -40,7 +40,7 @@ jobs:
           r-version: ${{ matrix.r }}
 
       - name: Set up Python Version
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -104,33 +104,19 @@ jobs:
         run: |
           pip install 'synapseclient[pandas]'
 
-      - name: use conda
-        shell: bash
-        if: ${{runner.os != 'Windows'}}
-        run: |
-          Rscript -e "install.packages('remotes'); remotes::install_version('reticulate', version = '1.28')"
-          Rscript -e "reticulate::install_miniconda()"
-          echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
-          Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.10'))"
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache: true
           cache-version: 2
           architecture: 'x64'
 
-      # - name: use virtualenv
-      #   shell: bash
-      #   run: |
-      #     Rscript -e "reticulate::virtualenv_create('r-reticulate')"
-      #     Rscript -e "reticulate::use_virtualenv('r-reticulate')"
-          # Rscript -e "install.packages('reticulate')"
-          # Rscript -e "remotes.install_github('remotes')"
-
-
       - name: linux-build-package
         if: ${{runner.os == 'linux'}}
         run: |
+          Rscript -e "install.packages('remotes'); remotes::install_version('reticulate', version = '1.28')"
+          Rscript -e "reticulate::install_miniconda()"
+          echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
+          Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.10'))"
           R CMD build ./
           R CMD INSTALL ./ --library=$R_LIBS_USER --no-test-load
           echo "ARTIFACT_EXTENSION=tar.gz" >> $GITHUB_ENV
@@ -138,6 +124,10 @@ jobs:
       - name: mac-build-package
         if: ${{runner.os == 'macOS'}}
         run: |
+            Rscript -e "install.packages('remotes'); remotes::install_version('reticulate', version = '1.28')"
+            Rscript -e "reticulate::install_miniconda()"
+            echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
+            Rscript -e "reticulate::conda_create('r-reticulate', packages = c('python==3.10'))"
             Rscript -e 'install.packages("synapser", repos=c("http://ran.synapse.org", "http://cran.fhcrc.org"))'
             R CMD build ./
             R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load
@@ -171,7 +161,7 @@ jobs:
           echo "UPLOAD_NAME=$UPLOAD_NAME" >> $GITHUB_ENV
 
       - name: upload-artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{env.UPLOAD_NAME}}
           path: ${{env.ARTIFACT_NAME}}
@@ -213,14 +203,14 @@ jobs:
           echo "deploy_target=$DEPLOY_TARGET" >> $GITHUB_OUTPUT
 
       - name: download-artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         if: ${{steps.check-deployment-target.outputs.deploy_target != ''}}
         with:
           path: deploy_artifacts
 
         # Before deoloying to RAN (which is an S3 bucket), authenticate to AWS using GitHub OIDC
       - name: Assume AWS Role
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-region: us-east-1
           role-to-assume: arn:aws:iam::325565585839:role/sagebase-github-oidc-sage-bionetworks-synapser
