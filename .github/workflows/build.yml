@@ -106,6 +106,7 @@ jobs:
 
       - name: use conda
         shell: bash
+        if: ${{runner.os != 'Windows'}}
         run: |
           Rscript -e "install.packages('reticulate', repos=c('https://cloud.r-project.org/'))"
           Rscript -e "reticulate::install_miniconda()"
