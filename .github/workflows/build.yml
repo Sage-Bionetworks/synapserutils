@@ -138,7 +138,7 @@ jobs:
       - name: mac-build-package
         if: ${{runner.os == 'macOS'}}
         run: |
-            Rscript -e "install.packages("synapser", repos=c('http://ran.synapse.org/', 'https://cloud.r-project.org'))"
+            Rscript -e 'install.packages("synapser", repos=c("http://ran.synapse.org", "http://cran.fhcrc.org"))'
             R CMD build ./
             R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load
             echo "ARTIFACT_EXTENSION=tgz" >> $GITHUB_ENV
