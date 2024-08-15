@@ -38,7 +38,6 @@ jobs:
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.r }}
-          extra-repositories: 'https://ran.synapse.org/'
 
       - name: Set up Python Version
         uses: actions/setup-python@v5
@@ -117,7 +116,7 @@ jobs:
         shell: bash
         run: |
           echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
-          Rscript -e "install.packages('remotes'); remotes::install_version('reticulate', version = '1.28')"
+          Rscript -e "install.packages('remotes'); install.packages('png'); remotes::install_version('reticulate', version = '1.28')"
           Rscript -e "reticulate::install_python(version = '3.10.11')"
           Rscript -e "reticulate::virtualenv_create(envname='r-reticulate',version = '3.10.11')"
           Rscript -e "reticulate::use_virtualenv('r-reticulate')"
@@ -138,7 +137,6 @@ jobs:
       - name: mac-build-package
         if: ${{runner.os == 'macOS'}}
         run: |
-            Rscript -e 'install.packages("synapser", repos=c("http://ran.synapse.org", "http://cran.fhcrc.org"))'
             R CMD build ./
             R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load
             echo "ARTIFACT_EXTENSION=tgz" >> $GITHUB_ENV
