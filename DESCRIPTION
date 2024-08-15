@@ -13,15 +13,14 @@ License: Apache License 2.0
 Encoding: UTF-8
 Imports:
   reticulate(>= 1.25),
-  reticulate(<= 1.28),
+  reticulate(<= 1.28)
 Depends:
   R(>= 4.1.3),
   R(< 4.5),
-  synapser(>= 1.1.0),
-  synapser(<= 2.2.0)
+  synapser
 Remotes:
   reticulate@1.28,
-  Sage-Bionetworks/synapser
+  Sage-Bionetworks/synapser@2.1.0
 Suggests: testthat, knitr, rmarkdown
 URL: https://www.synapse.org
 BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues
