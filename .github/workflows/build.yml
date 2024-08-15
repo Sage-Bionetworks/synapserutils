@@ -116,7 +116,7 @@ jobs:
         shell: bash
         run: |
           echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
-          Rscript -e "install.packages('remotes'); install.packages('png'); remotes::install_version('reticulate', version = '1.28')"
+          Rscript -e "install.packages('remotes'); install.packages('png', INSTALL_opts = '--no-multiarch'); remotes::install_version('reticulate', version = '1.28')"
           Rscript -e "reticulate::install_python(version = '3.10.11')"
           Rscript -e "reticulate::virtualenv_create(envname='r-reticulate',version = '3.10.11')"
           Rscript -e "reticulate::use_virtualenv('r-reticulate')"
@@ -145,7 +145,7 @@ jobs:
         if: ${{runner.os == 'Windows'}}
         shell: bash
         run: |
-          R CMD build ./
+          R CMD build .
           R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load --no-multiarch
           echo "ARTIFACT_EXTENSION=zip" >> $GITHUB_ENV
 
