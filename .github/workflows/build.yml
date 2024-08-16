@@ -98,11 +98,11 @@ jobs:
       - name: install-pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
-      - name: install-python-dependencies
-        shell: bash
-        if: ${{runner.os == 'Windows'}}
-        run: |
-          pip install 'synapseclient[pandas]'
+      # - name: install-python-dependencies
+      #   shell: bash
+      #   if: ${{runner.os == 'Windows'}}
+      #   run: |
+      #     pip install 'synapseclient[pandas]'
 
       - name: use conda
         shell: bash
