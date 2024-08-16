@@ -110,7 +110,8 @@ jobs:
           echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
           Rscript -e "install.packages('remotes'); remotes::install_version('reticulate', version = '1.28')"
           Rscript -e "reticulate::install_miniconda()"
-          Rscript -e "reticulate::conda_create(envname='r-reticulate', packages = c('python==3.10'))"
+          #echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
+          Rscript -e "reticulate::conda_create(envname='r-reticulate')"
           Rscript -e "reticulate::use_condaenv('r-reticulate)"
 
 
