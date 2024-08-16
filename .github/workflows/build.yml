@@ -39,10 +39,10 @@ jobs:
         with:
           r-version: ${{ matrix.r }}
 
-      - name: Set up Python Version
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+      # - name: Set up Python Version
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: '3.10'
 
       - name: shared-env
         id: shared-env
@@ -127,7 +127,6 @@ jobs:
         with:
           cache: true
           cache-version: 2
-          architecture: 'x64'
           
       - name: linux-build-package
         if: ${{runner.os == 'linux'}}
