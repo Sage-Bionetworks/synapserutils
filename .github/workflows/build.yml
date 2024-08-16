@@ -108,7 +108,7 @@ jobs:
         shell: bash
         run: |
           echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
-          Rscript -e "install.packages('remotes', INSTALL_opts = '--no-multiarch'); install.packages('png', INSTALL_opts = '--no-multiarch');remotes::install_version('reticulate', version = '1.28')"
+          Rscript -e "install.packages('remotes', INSTALL_opts = '--no-multiarch'); install.packages('png', INSTALL_opts = '--no-multiarch'); install.packages('utf8', INSTALL_opts = '--no-multiarch');remotes::install_version('reticulate', version = '1.28')"
           Rscript -e "reticulate::install_miniconda()"
           echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
           Rscript -e "reticulate::conda_create(envname='r-reticulate', python_version = '3.10')"
