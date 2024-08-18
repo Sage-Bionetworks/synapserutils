@@ -29,6 +29,8 @@ jobs:
       matrix:
         os: [ubuntu-22.04, macos-13, windows-2022]
         r: [4.1.3, 4.2.3, 4.3.1, 4.4.1]
+        architecture: ["x64"]
+        miniconda-version: ["latest"]
 
     steps:
       - name: checkout
@@ -108,8 +110,10 @@ jobs:
           activate-environment: ""
           auto-activate-base: false
           auto-update-conda: false
-          architecture: "x64"
           channels: conda-forge
+          architecture: ${{ matrix.architecture }}
+          miniconda-version: $${{ matrix.miniconda-version }}
+          python-version: "3.10"
           
       - name: use conda
         shell: bash
