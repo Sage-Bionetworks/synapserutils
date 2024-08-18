@@ -45,7 +45,7 @@ jobs:
         if: ${{runner.os == 'Windows' & matrix.r == '4.1.3'}}
         with:
           python-version: '3.10'
-          archi
+          architecture: 'i386'
 
       - name: shared-env
         id: shared-env
@@ -120,7 +120,7 @@ jobs:
         run: |
           echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
           Rscript -e "install.packages('reticulate', INSTALL_opts = '--no-multiarch')"
-          Rscript -e "Sys.setenv(R_ARCH="/64"); reticulate::install_miniconda()"
+          Rscript -e "reticulate::install_miniconda()"
           # Rscript -e "reticulate::conda_create(envname='r-reticulate', python_version = '3.10')"
           # Rscript -e "reticulate::use_condaenv('r-reticulate')"
 
