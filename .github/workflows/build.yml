@@ -21,8 +21,6 @@ jobs:
   build:
 
     runs-on: ${{ matrix.os }}
-    env:
-      R_ARCH: x64
     outputs:
       package_version: ${{ steps.shared-env.outputs.package_version }}
       r_minor_version: ${{ steps.shared-env.outputs.r_minor_version }}
