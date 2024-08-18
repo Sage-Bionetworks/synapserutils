@@ -42,11 +42,10 @@ jobs:
         with:
           r-version: ${{ matrix.r }}
 
-      # - name: Set up Python Version
-      #   uses: actions/setup-python@v5
-      #   if: ${{matrix.r == '4.1.3'}}
-      #   with:
-      #     python-version: '3.11'
+      - name: Set up Python Version
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
       - name: shared-env
         id: shared-env
@@ -102,11 +101,12 @@ jobs:
       - name: install-pandoc
         uses: r-lib/actions/setup-pandoc@v2
 
-      # - name: install-python-dependencies
-      #   shell: bash
-      #   if: ${{runner.os == 'Windows'}}
-      #   run: |
-      #     pip install 'synapseclient[pandas]'
+      - name: install-python-dependencies
+        shell: bash
+        if: ${{runner.os == 'Windows'}}
+        run: |
+          pip install 'synapseclient[pandas]'
+          
       # - uses: conda-incubator/setup-miniconda@v3
       #   with:
       #     #activate-environment: "r-reticulate"
