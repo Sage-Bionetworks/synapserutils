@@ -21,6 +21,8 @@ jobs:
   build:
 
     runs-on: ${{ matrix.os }}
+    env:
+      R_ARCH: "/x64"
     outputs:
       package_version: ${{ steps.shared-env.outputs.package_version }}
       r_minor_version: ${{ steps.shared-env.outputs.r_minor_version }}
@@ -114,12 +116,12 @@ jobs:
       #     architecture: ${{ matrix.architecture }}
       #     python-version: "3.10"
       #     
-      # - name: use conda
-      #   shell: bash
-      #   run: |
-      #     echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
-      #     Rscript -e "install.packages('reticulate', INSTALL_opts = '--no-multiarch')"
-      #     Rscript -e "reticulate::install_miniconda()"
+      - name: use conda
+        shell: bash
+        run: |
+          echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
+          Rscript -e "install.packages('reticulate', INSTALL_opts = '--no-multiarch')"
+          Rscript -e "reticulate::install_miniconda()"
       #     # Rscript -e "reticulate::conda_create(envname='r-reticulate', python_version = '3.10')"
       #     # Rscript -e "reticulate::use_condaenv('r-reticulate')"
 
@@ -133,11 +135,11 @@ jobs:
       #     Rscript -e "reticulate::virtualenv_create(envname='r-reticulate',version = '3.10.11')"
       #     Rscript -e "reticulate::use_virtualenv('r-reticulate')"
 
-      # - uses: r-lib/actions/setup-r-dependencies@v2
-      #   with:
-      #     cache: true
-      #     cache-version: 2
-          
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache: true
+          cache-version: 2
+
           
       - name: linux-build-package
         if: ${{runner.os == 'linux'}}
