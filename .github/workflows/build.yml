@@ -103,14 +103,16 @@ jobs:
       #   if: ${{runner.os == 'Windows'}}
       #   run: |
       #     pip install 'synapseclient[pandas]'
-
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: 3.10
+          
       - name: use conda
         shell: bash
         run: |
           echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
-          Rscript -e "install.packages('reticulate', INSTALL_opts = '--no-multiarch')"
-          Rscript -e "reticulate::install_miniconda()"
-          echo "options(reticulate.conda_binary = reticulate:::miniconda_conda())" >> .Rprofile
+          Rscript -e "install.packages('remotes', INSTALL_opts = '--no-multiarch');remotes::install_version('reticulate', version = '1.28')"
           Rscript -e "reticulate::conda_create(envname='r-reticulate', python_version = '3.10')"
           Rscript -e "reticulate::use_condaenv('r-reticulate')"
 
