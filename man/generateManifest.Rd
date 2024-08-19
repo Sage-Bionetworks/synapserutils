@@ -6,14 +6,15 @@ generateManifest
 }
 \description{
 Generates a manifest file based on a list of entities objects.
+To be removed in synapseclient v5.0.0. This is being replaced by `generate_manifest`.
 }
 \usage{
 generateManifest(allFiles, filename, provenance_cache=NULL)
 }
 \arguments{
 \item{allFiles}{ A list of File Entity objects on Synapse (can't be Synapse IDs)}
-\item{filename}{ file where manifest will be written}
-\item{provenance_cache}{an optional dict of known provenance dicts keyed by entity ids}
+\item{filename}{ A file where manifest will be written}
+\item{provenance_cache}{An optional dict of known provenance dicts keyed by entity ids}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

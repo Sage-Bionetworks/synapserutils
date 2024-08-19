@@ -5,15 +5,18 @@
 changeFileMetaData
 }
 \description{
-
+Change File Entity metadata like the download as name.
 }
 \usage{
-changeFileMetaData(entity, downloadAs=NA, contentType=NA)
+changeFileMetaData(entity, downloadAs=NA, contentType=NA, forceVersion=TRUE, name=NA)
 }
 \arguments{
-\item{entity}{        Synapse entity Id or object}
-\item{downloadAs}{    Specify filename to change the filename of a filehandle}
-\item{contentType}{   Specify content type to change the content type of a filehandle}
+\item{entity}{ Synapse entity Id or object.}
+\item{downloadAs}{ Specify filename to change the filename of a filehandle. Defaults to NA.}
+\item{contentType}{ Specify content type to change the content type of a filehandle. Defaults to NA.}
+\item{forceVersion}{Indicates whether the method should increment the version of
+                        the object even if nothing has changed. Defaults to TRUE.}
+\item{name}{ Specify filename to change the filename of the file. Defaults to NA.}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
@@ -38,6 +41,10 @@ changeFileMetaData(entity, downloadAs=NA, contentType=NA)
 \examples{
   \dontrun{
     changeFileMetaData("syn123", downloadAs="index.html", contentType="text")
+    
+    # Can be used to change the filename, the filename when the file is downloaded,
+    # or the file content-type without downloading
+    changeFileMetaData("syn123", downloadAs="my_new_downloadAs_name_file.txt", name="my_new_name_file.txt")
   }
 }
 
