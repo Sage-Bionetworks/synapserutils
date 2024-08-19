@@ -24,7 +24,6 @@ class SynapseUtilsWrapper(object):
     Change File Entity metadata like the download as name.
 
     Arguments:
-        syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
         entity: Synapse entity Id or object.
         downloadAs: Specify filename to change the filename of a filehandle.
         contentType: Specify content type to change the content type of a filehandle.
@@ -77,7 +76,6 @@ class SynapseUtilsWrapper(object):
     Given a list of fileHandle Ids or Objects, copy the fileHandles
 
     Arguments:
-        syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
         fileHandles: List of fileHandle Ids or Objects
         associateObjectTypes: List of associated object types: FileEntity, TableEntity,
                                 WikiAttachment, UserProfileAttachment, MessageAttachment,
@@ -121,7 +119,7 @@ class SynapseUtilsWrapper(object):
                         Defaults to True but needs an entityMap
         entityMap: An entity map {'oldSynId','newSynId'} to update the synapse IDs
                     referenced in the wiki.
-        
+                    
     Returns:
         A list of Objects with three fields: id, title and parentId.
     """
@@ -151,7 +149,6 @@ class SynapseUtilsWrapper(object):
     into a single cell of data with a comma `,` delimiter wrapped in brackets `[]`.
 
     Arguments:
-        syn: A Synapse object with user's login, e.g. syn = synapseclient.login()
         entity: A Synapse ID, a Synapse Entity object of type file, folder or
                 project.
         path: An optional path where the file hierarchy will be reproduced. If not
@@ -261,7 +258,6 @@ class SynapseUtilsWrapper(object):
   
   def generateManifest(self, allFiles, filename, provenance_cache=None):
     """Generates a manifest file based on a list of entities objects.
-
     Arguments:
         allFiles: A list of File Entity objects on Synapse (can't be Synapse IDs)
         filename: file where manifest will be written
