@@ -18,7 +18,7 @@ Depends:
   R(>= 4.1.3),
   R(< 4.5),
   synapser(>= 1.1.0),
-  synapser(<= 2.0.0),
+  synapser(< 3.0.0),
 Remotes:
   reticulate@1.28,
   Sage-Bionetworks/synapser@2.1.0
