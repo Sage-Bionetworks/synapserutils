@@ -3,32 +3,26 @@
 %  Instead, copy this file to the man/ folder, remove this warning, and edit freely.
 %  Use Git to identify changes in this file which suggest where to change your edited copy.
 %
-\name{walk}
-\alias{walk}
+\name{##alias##}
+\alias{##alias##}
 \docType{methods}
 \title{
-walk
+##title##
 }
 \description{
-Traverse through the hierarchy of files and folders stored under the synId.
-Has the same behavior as os.walk()
-
-Arguments:
-    synId: A synapse ID of a folder or project
-    includeTypes: Must be a list of entity types (ie.["file", "table"])
-                    The "folder" type is always included so the hierarchy can be traversed
+##description##
 }
 \usage{
-walk(synId)
+##usage##
 }
 \arguments{
-\item{synId}{}
+##arguments##
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
 }
 \value{
-
+##value##
 }
 \references{
 % A section with references to the literature. Use \url{} or \href{}{} for web pointers.
@@ -45,7 +39,7 @@ walk(synId)
 % You can use \dontrun{} for text that should only be shown, but not run, and \dontshow{} for extra commands 
 % for testing that should not be shown to users, but will be run by example(). 
 \examples{
-
+##examples##
 }
 
 
