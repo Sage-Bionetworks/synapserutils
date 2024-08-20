@@ -139,7 +139,8 @@ jobs:
         if: ${{runner.os == 'Windows'}}
         shell: bash
         run: |
-          Rscript -e "install.packages('rjson', repos='https://cloud.r-project.org')"
+          echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
+          Rscript -e "install.packages('remotes', INSTALL_opts = '--no-multiarch');remotes::install_version('rjson', version = '0.2.21')"
           Rscript -e "install.packages('synapser', repos=c('http://ran.synapse.org', 'https://cloud.r-project.org'), dependencies = TRUE)"
           R CMD build ./
           R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load --no-multiarch
