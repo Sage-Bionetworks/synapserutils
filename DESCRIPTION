@@ -21,7 +21,7 @@ Depends:
   synapser(< 3.0.0),
 Remotes:
   reticulate@1.28,
-  Sage-Bionetworks/synapser@2.1.0
+  Sage-Bionetworks/synapser@2.1.1
 Suggests: testthat, knitr, rmarkdown
 URL: https://www.synapse.org
 BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues
