@@ -140,6 +140,7 @@ jobs:
         shell: bash
         run: |
           echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" >> .Rprofile
+          Rscript -e "install.packages('remotes');remotes::install_version('rjson', version = '0.2.21')"
           Rscript -e "install.packages('synapser', repos=c('http://ran.synapse.org', 'https://cloud.r-project.org'), dependencies = TRUE)"
           R CMD build ./
           R CMD INSTALL --build ${PACKAGE_NAME}_${PACKAGE_VERSION}.tar.gz --library=$R_LIBS_USER --no-test-load --no-multiarch
