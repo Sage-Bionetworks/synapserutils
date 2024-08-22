@@ -17,13 +17,16 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">synapserutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/Sage-Bionetworks/synapserutils/" class="external-link">
@@ -50,7 +53,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">copyFileHandles</span><span class="op">(</span><span class="va">fileHandles</span>, <span class="va">associateObjectTypes</span>, <span class="va">associateObjectIds</span>, <span class="va">contentTypes</span>, <span class="va">fileNames</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">copyFileHandles</span><span class="op">(</span><span class="va">fileHandles</span>, <span class="va">associateObjectTypes</span>, <span class="va">associateObjectIds</span>, newContentTypes<span class="op">=</span><span class="cn">NULL</span>, newFileNames<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -59,16 +62,26 @@
 <dd><p>List of fileHandle Ids or Objects</p></dd>
 
 <dt>associateObjectTypes</dt>
-<dd><p>List of associated object types: FileEntity, TableEntity, WikiAttachment, UserProfileAttachment, MessageAttachment, TeamAttachment, SubmissionAttachment, VerificationSubmission (Must be the same length as fileHandles)</p></dd>
+<dd><p>List of associated object types: FileEntity, TableEntity,
+                            WikiAttachment, UserProfileAttachment, MessageAttachment,
+                            TeamAttachment, SubmissionAttachment, VerificationSubmission
+                            (Must be the same length as fileHandles).</p></dd>
 
 <dt>associateObjectIds</dt>
-<dd><p>List of associated object Ids: If copying a file, the objectId is the synapse id, and if copying a wiki attachment, the object id is the wiki subpage id. (Must be the same length as fileHandles)</p></dd>
+<dd><p>List of associated object Ids: If copying a file,
+                        the objectId is the synapse id, and if copying a wiki attachment,
+                        the object id is the wiki subpage id.
+                        (Must be the same length as fileHandles).</p></dd>
 
-<dt>contentTypes</dt>
-<dd><p>List of content types (Can change a filetype of a filehandle).</p></dd>
+<dt>newContentTypes</dt>
+<dd><p>List of content types. Set each item to a new content type for each file
+                        handle, or leave the item as NULL to keep the original content type.
+                        Default NULL, which keeps all original content types.</p></dd>
 
-<dt>fileNames</dt>
-<dd><p>List of filenames (Can change a filename of a filehandle).</p></dd>
+<dt>newFileNames</dt>
+<dd><p>List of filenames. Set each item to a new filename for each file handle,
+                    or leave the item as NULL to keep the original name. Default NULL,
+                    which keeps all original file names.</p></dd>
 
 </dl></div>
     <div id="details">
@@ -109,7 +122,7 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Thomas Yu.</p>
+  <p></p><p>Developed by Dan Lu, Thomas Yu.</p>
 </div>
 
 <div class="pkgdown">

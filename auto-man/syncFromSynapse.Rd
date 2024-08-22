@@ -36,9 +36,14 @@ Arguments:
     entity: A Synapse ID, a Synapse Entity object of type file, folder or
             project.
     path: An optional path where the file hierarchy will be reproduced. If not
-          specified the files will by default be placed in the synapseCache.
+        specified the files will by default be placed in the synapseCache. A path
+        is required in order to create a manifest file. A manifest is TSV file
+        that is automatically created that contains metadata (annotations, storage
+        location and provenance) of all downloaded files. If no files were
+        downloaded, no manifest file will be created.
     ifcollision: Determines how to handle file collisions. Maybe
                  "overwrite.local", "keep.local", or "keep.both".
+    allFiles: Deprecated and not to be used. This will be removed in v5.0.0.
     followLink: Determines whether the link returns the target Entity.
     manifest: Determines whether creating manifest file automatically. The
               optional values here (`all`, `root`, `suppress`).
@@ -67,7 +72,7 @@ See also:
 - [synapseutils.sync.syncToSynapse][]
 }
 \usage{
-syncFromSynapse(entity, path=NULL, ifcollision=overwrite.local, allFiles=NULL, followLink=FALSE)
+syncFromSynapse(entity, path=NULL, ifcollision=overwrite.local, allFiles=NULL, followLink=FALSE, manifest=all, downloadFile=TRUE)
 }
 \arguments{
 \item{entity}{}
@@ -75,6 +80,8 @@ syncFromSynapse(entity, path=NULL, ifcollision=overwrite.local, allFiles=NULL, f
 \item{ifcollision}{}
 \item{allFiles}{}
 \item{followLink}{}
+\item{manifest}{}
+\item{downloadFile}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

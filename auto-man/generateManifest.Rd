@@ -11,7 +11,6 @@ generateManifest
 }
 \description{
 Generates a manifest file based on a list of entities objects.
-
 Arguments:
     allFiles: A list of File Entity objects on Synapse (can't be Synapse IDs)
     filename: file where manifest will be written

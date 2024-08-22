@@ -20,13 +20,16 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">synapserutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/Sage-Bionetworks/synapserutils/" class="external-link">
@@ -56,7 +59,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">copy</span><span class="op">(</span><span class="va">entity</span>, <span class="va">destinationId</span>, skipCopyWikiPage<span class="op">=</span><span class="cn">FALSE</span>, skipCopyAnnotations<span class="op">=</span><span class="cn">FALSE</span>, version<span class="op">=</span><span class="cn">NULL</span>, updateExisting<span class="op">=</span><span class="cn">NULL</span>, setProvenance<span class="op">=</span><span class="cn">NULL</span>, excludeTypes<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">copy</span><span class="op">(</span><span class="va">entity</span>, <span class="va">destinationId</span>, skipCopyWikiPage<span class="op">=</span><span class="cn">FALSE</span>, skipCopyAnnotations<span class="op">=</span><span class="cn">FALSE</span>, version<span class="op">=</span><span class="cn">NULL</span>, updateExisting<span class="op">=</span><span class="cn">FALSE</span>, setProvenance<span class="op">=</span><span class="cn">NULL</span>, excludeTypes<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -69,31 +72,25 @@
 
 <dt>skipCopyWikiPage</dt>
 <dd><p>Skip copying the wiki pages<br>
-                            Default is False</p></dd>
+                            Default is FALSE.</p></dd>
 
 <dt>skipCopyAnnotations</dt>
 <dd><p>Skips copying the annotations<br>
-                            Default is False</p></dd>
+                            Default is FALSE.</p></dd>
 
 <dt>version</dt>
-<dd><p>optional named parameter:          Can specify version of a file. <br>
-                        Default to None</p></dd>
+<dd><p>Optional named parameter. (File copy only) Can specify version of a file. Defaults to NULL.</p></dd>
 
 <dt>updateExisting</dt>
-<dd><p>optional named parameter:   When the destination has an entity that has the same name, <br>
-                        users can choose to update that entity.  <br>
-                        It must be the same entity type<br>
-                        Default to False</p></dd>
+<dd><p>Optional named parameter. 
+                      (File copy only) When the destination has an entity that has the same name, 
+                      users can choose to update that entity. It must be the same entity type Defaults to FALSE.</p></dd>
 
 <dt>setProvenance</dt>
-<dd><p>optional named parameter:    Has three values to set the provenance of the copied entity:<br>
-                            traceback: Sets to the source entity<br>
-                            existing: Sets to source entity's original provenance (if it exists)<br>
-                            None: No provenance is set</p></dd>
+<dd><p>Optional named parameter. (File copy only) Has three values to set the provenance of the copied entity: <br><b>traceback</b>: Sets to the source entity <br><b>existing</b>: Sets to source entity's original provenance (if it exists) <br><b>None</b>: No provenance is set</p></dd>
 
 <dt>excludeTypes</dt>
-<dd><p>optional named parameter:     Accepts a list of entity types (file, table, link) which determines which entity types to not copy.<br>
-                        Defaults to an empty list.</p></dd>
+<dd><p>Optional named parameter. (Folder/Project copy only) Accepts a list of entity types (file, table, link) which determines which entity types to not copy. Defaults to an empty list.</p></dd>
 
 </dl></div>
     <div id="details">
@@ -104,7 +101,7 @@
     <h2>Value</h2>
     
 
-<p>a mapping between the original and copied entity: 'syn1234':'syn33455'</p>
+<p>A mapping between the original and copied entity: 'syn1234':'syn33455'</p>
 
 
     </div>
@@ -124,7 +121,11 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="fu">copy</span><span class="op">(</span><span class="st">"syn1234"</span>, <span class="st">"syn33455"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="co"># copying files</span></span></span>
+<span class="r-in"><span>    <span class="fu">copy</span><span class="op">(</span><span class="va">syn</span>, <span class="st">"syn12345"</span>, <span class="st">"syn45678"</span>, updateExisting<span class="op">=</span><span class="va">False</span>, setProvenance <span class="op">=</span> <span class="st">"traceback"</span>,version <span class="op">=</span> <span class="va">None</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    </span></span>
+<span class="r-in"><span>    <span class="co"># copying Folders/Projects</span></span></span>
+<span class="r-in"><span>    <span class="fu">copy</span><span class="op">(</span><span class="va">syn</span>, <span class="st">"syn123450"</span>, <span class="st">"syn345678"</span>, excludeTypes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"file"</span>,<span class="st">"table"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 </code></pre></div>
     </div>
@@ -136,7 +137,7 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Thomas Yu.</p>
+  <p></p><p>Developed by Dan Lu, Thomas Yu.</p>
 </div>
 
 <div class="pkgdown">

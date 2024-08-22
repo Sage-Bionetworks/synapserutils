@@ -19,10 +19,11 @@ Arguments:
                     The "folder" type is always included so the hierarchy can be traversed
 }
 \usage{
-walk(synId)
+walk(synId, includeTypes=c("folder", "file", "table", "link", "entityview", "dockerrepo", "submissionview", "dataset", "materializedview"))
 }
 \arguments{
 \item{synId}{}
+\item{includeTypes}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

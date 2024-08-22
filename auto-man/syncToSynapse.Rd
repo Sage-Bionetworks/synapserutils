@@ -16,8 +16,6 @@ Given a file describing all of the uploads, this uploads the content to Synapse 
 optionally notifies you via Synapse messagging (email) at specific intervals, on
 errors and on completion.
 
-[Read more about the manifest file format](../../explanations/manifest_tsv/)
-
 There are a few conversions around annotations to call out here.
 
 ## Conversion of annotations from the TSV file to Python native objects
@@ -39,18 +37,28 @@ Arguments:
     manifestFile: A tsv file with file locations and metadata to be pushed to Synapse.
     dryRun: Performs validation without uploading if set to True.
     sendMessages: Sends out messages on completion if set to True.
+    retries: Number of retries to attempt if an error occurs.
+    merge_existing_annotations: If True, will merge the annotations in the manifest
+        file with the existing annotations on Synapse. If False, will overwrite the
+        existing annotations on Synapse with the annotations in the manifest file.
+    associate_activity_to_new_version: If True, and a version update occurs, the
+        existing activity in Synapse will be associated with the new version. The
+        exception is if you are specifying new values to be used/executed, it will
+        create a new activity for the new version of the entity.
 
 Returns:
     None
 }
 \usage{
-syncToSynapse(manifestFile, dryRun=FALSE, sendMessages=TRUE, retries=4)
+syncToSynapse(manifestFile, dryRun=FALSE, sendMessages=TRUE, retries=4, merge_existing_annotations=TRUE, associate_activity_to_new_version=FALSE)
 }
 \arguments{
 \item{manifestFile}{}
 \item{dryRun}{}
 \item{sendMessages}{}
 \item{retries}{}
+\item{merge_existing_annotations}{}
+\item{associate_activity_to_new_version}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

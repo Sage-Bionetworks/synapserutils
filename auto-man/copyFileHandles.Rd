@@ -36,14 +36,14 @@ Raises:
     ValueError: If length of all input arguments are not the same
 }
 \usage{
-copyFileHandles(fileHandles, associateObjectTypes, associateObjectIds, contentTypes, fileNames)
+copyFileHandles(fileHandles, associateObjectTypes, associateObjectIds, newContentTypes=NULL, newFileNames=NULL)
 }
 \arguments{
 \item{fileHandles}{}
 \item{associateObjectTypes}{}
 \item{associateObjectIds}{}
-\item{contentTypes}{}
-\item{fileNames}{}
+\item{newContentTypes}{}
+\item{newFileNames}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

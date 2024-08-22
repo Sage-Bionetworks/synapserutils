@@ -15,6 +15,11 @@ Copies wikis and updates internal links
 Arguments:
     entity: A synapse ID of an entity whose wiki you want to copy
     destinationId: Synapse ID of a folder/project that the wiki wants to be copied to
+    entitySubPageId: Can specify subPageId and copy all of its subwikis
+                        Defaults to None, which copies the entire wiki subPageId can be found:
+                        https://www.synapse.org/#!Synapse:syn123/wiki/1234
+                        In this case, 1234 is the subPageId.
+    destinationSubPageId: Can specify destination subPageId to copy wikis to.
     updateLinks: Update all the internal links.
                  (e.g. syn1234/wiki/34345 becomes syn3345/wiki/49508)
     updateSynIds: Update all the synapse ID's referenced in the wikis.
@@ -22,12 +27,7 @@ Arguments:
                     Defaults to True but needs an entityMap
     entityMap: An entity map {'oldSynId','newSynId'} to update the synapse IDs
                 referenced in the wiki.
-    entitySubPageId: Can specify subPageId and copy all of its subwikis
-                        Defaults to None, which copies the entire wiki subPageId can be found:
-                        https://www.synapse.org/#!Synapse:syn123/wiki/1234
-                        In this case, 1234 is the subPageId.
-    destinationSubPageId: Can specify destination subPageId to copy wikis to.
-
+                
 Returns:
     A list of Objects with three fields: id, title and parentId.
 }
