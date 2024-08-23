@@ -267,7 +267,7 @@ jobs:
           echo "try(remove.packages('$PACKAGE'), silent=T)" >> test.R
           echo "install.packages('remotes', repos = 'https://cloud.r-project.org'); remotes::install_version('reticulate', version = '1.28', repos = 'https://cloud.r-project.org')" >> test.R
           echo "remotes::install_version('rjson', version = '0.2.21', repos = 'https://cloud.r-project.org')" >> test.R
-          Rscript -e "install.packages('synapser', repos=c('http://ran.synapse.org', 'https://cloud.r-project.org'), dependencies = TRUE)" >> test.R
+          echo "install.packages('synapser', repos=c('http://ran.synapse.org', 'https://cloud.r-project.org'), dependencies = TRUE)" >> test.R
           echo "install.packages('$PACKAGE', repos=c('$RAN', 'https://cloud.r-project.org/'))" >> test.R
           echo "library('$PACKAGE')" >> test.R
           R --vanilla < test.R
