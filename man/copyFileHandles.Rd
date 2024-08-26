@@ -8,14 +8,24 @@ copyFileHandles
 Given a list of fileHandle Objects, copy the fileHandles
 }
 \usage{
-copyFileHandles(fileHandles, associateObjectTypes, associateObjectIds, contentTypes, fileNames)
+copyFileHandles(fileHandles, associateObjectTypes, associateObjectIds, newContentTypes=NULL, newFileNames=NULL)
 }
 \arguments{
 \item{fileHandles}{          List of fileHandle Ids or Objects}
-\item{associateObjectTypes}{ List of associated object types: FileEntity, TableEntity, WikiAttachment, UserProfileAttachment, MessageAttachment, TeamAttachment, SubmissionAttachment, VerificationSubmission (Must be the same length as fileHandles)}
-\item{associateObjectIds}{   List of associated object Ids: If copying a file, the objectId is the synapse id, and if copying a wiki attachment, the object id is the wiki subpage id. (Must be the same length as fileHandles)}
-\item{contentTypes}{         List of content types (Can change a filetype of a filehandle).}
-\item{fileNames}{            List of filenames (Can change a filename of a filehandle).}
+\item{associateObjectTypes}{ List of associated object types: FileEntity, TableEntity,
+                            WikiAttachment, UserProfileAttachment, MessageAttachment,
+                            TeamAttachment, SubmissionAttachment, VerificationSubmission
+                            (Must be the same length as fileHandles).}
+\item{associateObjectIds}{   List of associated object Ids: If copying a file,
+                        the objectId is the synapse id, and if copying a wiki attachment,
+                        the object id is the wiki subpage id.
+                        (Must be the same length as fileHandles).}
+\item{newContentTypes}{ List of content types. Set each item to a new content type for each file
+                        handle, or leave the item as NULL to keep the original content type.
+                        Default NULL, which keeps all original content types.}
+\item{newFileNames}{   List of filenames. Set each item to a new filename for each file handle,
+                    or leave the item as NULL to keep the original name. Default NULL,
+                    which keeps all original file names.}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.

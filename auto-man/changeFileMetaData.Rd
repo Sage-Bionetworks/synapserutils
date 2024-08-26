@@ -14,22 +14,24 @@ Change File Entity metadata like the download as name.
 
 Arguments:
     entity: Synapse entity Id or object.
-    contentType: Specify content type to change the content type of a filehandle.
     downloadAs: Specify filename to change the filename of a filehandle.
+    contentType: Specify content type to change the content type of a filehandle.
     forceVersion: Indicates whether the method should increment the version of
                     the object even if nothing has changed. Defaults to True.
+    name: Specify filename to change the filename of the file.
 
 Returns:
     Synapse Entity
 }
 \usage{
-changeFileMetaData(entity, downloadAs=NULL, contentType=NULL, forceVersion=TRUE)
+changeFileMetaData(entity, downloadAs=NULL, contentType=NULL, forceVersion=TRUE, name=NULL)
 }
 \arguments{
 \item{entity}{}
 \item{downloadAs}{}
 \item{contentType}{}
 \item{forceVersion}{}
+\item{name}{}
 }
 \details{
 % A detailed if possible precise description of the functionality provided, extending the basic information in the \description slot.
