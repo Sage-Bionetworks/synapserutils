@@ -15,7 +15,7 @@ Imports:
   reticulate(>= 1.25),
   reticulate(<= 1.28),
 Depends:
-  R(>= 4.1.3)
+  R(>= 4.1.3),
   synapser(< 2.2.0),
 Remotes:
   reticulate@1.28,
