@@ -1,3 +1,8 @@
+## synapserutils 1.2.1
+### Improvements
+* Update synapser dependency to support synapser 2.1.4.
+* Now support R 4.5.2.
+
 ## synapserutils 1.2.0
 
 ### Improvements
