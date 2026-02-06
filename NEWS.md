@@ -1,7 +1,10 @@
 ## synapserutils 1.2.1
 ### Improvements
-* Update synapser dependency to support synapser 2.1.4.
+* Update synapser dependency to support synapser 2.1.5.
 * Now support R 4.5.2.
+
+### Deprecation
+* No longer support Python 3.8
 
 ## synapserutils 1.2.0
 

@@ -2,7 +2,7 @@ Package: synapserutils
 Type: Package
 Title: Collection of utilities building on top of synapser
 Version: 1.2.1
-Date: 2026-01-22
+Date: 2026-02-06
 Authors@R: c(
   person("Dan", "Lu", role = c("aut", "cre"), email = "dan.lu@sagebase.org"),
   person("Thomas", "Yu", role = c("aut"), email = "thomas.yu@sagebase.org"),
@@ -19,7 +19,7 @@ Depends:
   synapser(< 2.2.0),
 Remotes:
   reticulate@1.28,
-  Sage-Bionetworks/synapser@2.1.4
+  Sage-Bionetworks/synapser@2.1.5
 Suggests: testthat, knitr, rmarkdown
 URL: https://www.synapse.org
 BugReports: https://github.com/Sage-Bionetworks/synapserutils/issues
