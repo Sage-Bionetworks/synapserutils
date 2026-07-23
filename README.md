@@ -7,6 +7,16 @@ The `synapserutils` package provides a set of utility functions, built
 on top of the [`synapser`](http://sage-bionetworks.github.io/synapser/)
 package.
 
+
+## Requirements
+
+- R version 4.1.3 or higher (tested up to R 4.5.2)
+- Python version 3.9 to 3.11 (Python 3.12+ not yet supported due to reticulate compatibility)
+- [Synapse account](https://www.synapse.org/#!RegisterAccount:0)
+- [`synapser`](http://sage-bionetworks.github.io/synapser/) package (currently using synapser 2.1.5)
+
+**Note:** Since we're using reticulate 1.28 to interface with the Synapse Python Client **synapser is only compatible with Python versions earlier than 3.12**. Using Python 3.12 or later may result in errors. We have fully tested and recommend using Python 3.10 for optimal compatibility.
+
 ## Installation
 
 `synapserutils` is available as a ready-built package for Microsoft

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collection of utilities building on top of synapser • synapserutils</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">synapserutils</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.1</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
 <li>
   <a href="https://github.com/Sage-Bionetworks/synapserutils/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -61,7 +61,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="contents col-md-9">
@@ -69,6 +69,18 @@
 <div class="page-header"><h1 id="synapserutils">synapserutils<a class="anchor" aria-label="anchor" href="#synapserutils"></a>
 </h1></div>
 <p>The <code>synapserutils</code> package provides a set of utility functions, built on top of the <a href="http://sage-bionetworks.github.io/synapser/" class="external-link"><code>synapser</code></a> package.</p>
+<div class="section level2">
+<h2 id="requirements">Requirements<a class="anchor" aria-label="anchor" href="#requirements"></a>
+</h2>
+<ul>
+<li>R version 4.1.3 or higher (tested up to R 4.5.2)</li>
+<li>Python version 3.9 to 3.11 (Python 3.12+ not yet supported due to reticulate compatibility)</li>
+<li><a href="https://www.synapse.org/#!RegisterAccount:0" class="external-link">Synapse account</a></li>
+<li>
+<a href="http://sage-bionetworks.github.io/synapser/" class="external-link"><code>synapser</code></a> package (currently using synapser 2.1.5)</li>
+</ul>
+<p><strong>Note:</strong> Since we’re using reticulate 1.28 to interface with the Synapse Python Client <strong>synapser is only compatible with Python versions earlier than 3.12</strong>. Using Python 3.12 or later may result in errors. We have fully tested and recommend using Python 3.10 for optimal compatibility.</p>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -186,8 +198,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Dan Lu <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Thomas Yu <br><small class="roles"> Author </small>  </li>
+<li>Dan Lu <br><small class="roles"> Author, maintainer </small>   </li>
+<li>Thomas Yu <br><small class="roles"> Author </small>   </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -205,16 +217,16 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
