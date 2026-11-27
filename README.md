@@ -3,18 +3,46 @@
 
 # synapserutils
 
-The `synapserutils` package provides a set of utility functions, built
-on top of the [`synapser`](http://sage-bionetworks.github.io/synapser/)
-package.
+> [!WARNING]
+> **This package is deprecated and no longer maintained.** Its functions are now built into [`synapser`](https://r-docs.synapse.org/) 3.0 and later, so you no longer need a separate package. See the [synapser documentation](https://r-docs.synapse.org/) and the [migration guide for synapser 3.0](https://r-docs.synapse.org/v3.0.0/articles/migration_to_synapser_3_0.html).
 
-## Installation
+`synapserutils` only works with `synapser` 2.x. It can’t be installed
+alongside `synapser` 3.0.
+
+## Where each function went
+
+In `synapser` 3.0, these utilities are methods you call on a `File`,
+`Folder`, `Project`, or `WikiPage`, usually with a pipe. For example,
+`copy("syn123", "syn456")` becomes
+`File(id = "syn123") |> synCopy(parent_id = "syn456")`.
+
+| `synapserutils`            | `synapser` 3.0 replacement                                                                                                                                                                                                                     |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `copy()`                   | `synCopy()` on a [`File`](https://r-docs.synapse.org/v3.0.0/reference/File_Copy.html), [`Folder`](https://r-docs.synapse.org/v3.0.0/reference/Folder_Copy.html), or [`Project`](https://r-docs.synapse.org/v3.0.0/reference/Project_Copy.html) |
+| `copyWiki()`               | `synCopy()` on a [`WikiPage`](https://r-docs.synapse.org/v3.0.0/reference/WikiPage_Copy.html)                                                                                                                                                  |
+| `syncFromSynapse()`        | [`synSyncFromSynapse()`](https://r-docs.synapse.org/v3.0.0/reference/Folder_SyncFromSynapse.html) on a `Folder` or `Project`. See [Downloading data in bulk](https://r-docs.synapse.org/v3.0.0/articles/download_data_in_bulk.html).           |
+| `syncToSynapse()`          | [`synSyncToSynapse()`](https://r-docs.synapse.org/v3.0.0/reference/Folder_SyncToSynapse.html) on a `Folder` or `Project`. See [Uploading data in bulk](https://r-docs.synapse.org/v3.0.0/articles/upload_data_in_bulk.html).                   |
+| `generate_sync_manifest()` | [`synGenerateSyncManifest()`](https://r-docs.synapse.org/v3.0.0/reference/Folder_GenerateSyncManifest.html) on a `Folder` or `Project`                                                                                                         |
+| `walk()`                   | [`synWalk()`](https://r-docs.synapse.org/v3.0.0/reference/Folder_Walk.html) on a `Folder` or `Project`                                                                                                                                         |
+| `changeFileMetaData()`     | [`synChangeMetadata()`](https://r-docs.synapse.org/v3.0.0/reference/File_ChangeMetadata.html) on a `File`                                                                                                                                      |
+| `generateManifest()`       | No direct replacement. `synSyncFromSynapse()` writes a `manifest.csv` for you. See [Manifest CSV](https://r-docs.synapse.org/v3.0.0/articles/manifest_csv.html).                                                                               |
+| `copyFileHandles()`        | No direct replacement. Call the [`POST /filehandles/copy`](https://rest-docs.synapse.org/rest/POST/filehandles/copy.html) REST endpoint with [`synRestPost()`](https://r-docs.synapse.org/v3.0.0/reference/synRestPost.html).                  |
+
+## Legacy documentation (synapser 2.x)
+
+The rest of this page describes the last release of `synapserutils`
+(1.2.0) and is kept for anyone still using `synapser` 2.x.
+
+The `synapserutils` package provides a set of utility functions, built
+on top of the `synapser` package.
+
+### Installation
 
 `synapserutils` is available as a ready-built package for Microsoft
 Windows and Mac OSX. For Linux systems, it is available to install from
 source. It can be installed or upgraded using the standard
 `install.packages()` command, adding the [Sage Bionetworks R Archive
-Network (RAN)](http://ran.synapse.org) to the repository list,
-e.g.:
+Network (RAN)](http://ran.synapse.org) to the repository list, e.g.:
 
 ``` r
 install.packages("synapserutils", repos=c("http://ran.synapse.org", "https://cloud.r-project.org"))
@@ -36,14 +64,13 @@ install.packages("synapserutils")
 
 If you have been asked to validate a release candidate, please replace
 the URL <https://sage-bionetworks.github.io/ran> with
-<https://sage-bionetworks.github.io/staging-ran>, that
-is:
+<https://sage-bionetworks.github.io/staging-ran>, that is:
 
 ``` r
 install.packages("synapserutils", repos=c("http://staging-ran.synapse.org", "https://cloud.r-project.org"))
 ```
 
-## Usage
+### Usage
 
 To get started, try logging into Synapse. If you don’t already have a
 Synapse account, register [here](https://www.synapse.org/register):
@@ -53,11 +80,11 @@ library(synapserutils)
 synLogin()
 ```
 
-## Available Utilities
+### Available Utilities
 
-### Copy
+#### Copy
 
-#### Copy Entity (File, Folder, Table, Link, and Project)
+##### Copy Entity (File, Folder, Table, Link, and Project)
 
 The example below copies File ID `syn123` to Project ID `syn456`:
 
@@ -74,7 +101,7 @@ For more information on `copy()`, please see:
 ?copy
 ```
 
-#### Copy Wiki and Wiki Subpage
+##### Copy Wiki and Wiki Subpage
 
 To copy a wiki page that is associated with an Entity (Project/ File/
 Folder/ Table) `syn123` to another Entity `syn789`:
@@ -89,9 +116,9 @@ For more information on `copyWiki()`, please see:
 ?copyWiki
 ```
 
-### Batch Process
+#### Batch Process
 
-#### Upload Data in Bulk
+##### Upload Data in Bulk
 
 `syncToSynapse()` takes a manifest file and uploads the files listed in
 the manifest file to Synapse:
@@ -109,7 +136,7 @@ and by:
 ?syncToSynapse
 ```
 
-#### Download Data in Bulk
+##### Download Data in Bulk
 
 To recursively download all files within a container (Folder/ Project)
 `syn123`:
@@ -126,7 +153,7 @@ and by:
 ?syncFromSynapse
 ```
 
-### Other Utilites
+#### Other Utilites
 
 To recursively getting Entity (File/ Folder/ Table/ Link/ Project)
 metadata from a container (Folder/ Project):
